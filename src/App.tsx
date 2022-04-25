@@ -1,5 +1,17 @@
-import { useEffect } from 'react';
 import './App.css';
+import { availableRoutes } from './frontend/routes';
+
+function App() {
+  return (
+    <div className="App">
+      {availableRoutes}
+    </div>
+  );
+}
+
+export default App;
+/**
+
 import { db } from './frontend/firebase/firebase';
 import {
   collection,
@@ -8,29 +20,6 @@ import {
 
 const collectionName = 'wishlist';
 const docRef = collection(db, collectionName);
-
-function App() {
-
-  useEffect(() => {
-    (async function () {
-      const data = await getDocs(docRef);
-      const dataList = await data.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id
-      }));
-      console.log(dataList);
-    })()
-  })
-
-  return (
-    <div className="App">
-      Quizeazy
-    </div>
-  );
-}
-
-export default App;
-/**
 import {
   collection,
   doc,
@@ -41,6 +30,17 @@ import {
 } from 'firebase/firestore';
 await addDoc(docRef, objectData);
 await deleteDoc(addrDoc);
+
+useEffect(() => {
+    (async function () {
+      const data = await getDocs(docRef);
+      const dataList = await data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id
+      }));
+      console.log(dataList);
+    })()
+})
 
 const getAddress = async () => {
     const data = await getDocs(docRef);
