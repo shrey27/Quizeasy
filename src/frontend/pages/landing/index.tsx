@@ -1,11 +1,13 @@
 import React from 'react';
 import './landing.css';
+// import banner from '../../assets/landing.svg';
+const banner: string = require("../../assets/landing.svg").default;
 
 export default function Landing() {
     return <div><main className="landing xs-s">
         <div className="landing__bnr sm-s">
             <img
-                src="../../assets/landing.svg"
+                src={banner}
                 alt="banner"
                 className="landing__bnr__img img--resp"
             />
