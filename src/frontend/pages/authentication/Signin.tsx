@@ -8,13 +8,7 @@ import { loginCredentials } from '../../utility/constants';
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
   const {
-    email,
-    password,
-    emailError,
-    passwordError,
-    signinError,
-    dispatch,
-    handleSignIn
+    authUser
   } = useAuthCtx();
 
   const location: Object = useLocation();
@@ -22,21 +16,17 @@ export default function Signin() {
 
   const onSignInTestCredentials = (e: any) => {
     e.preventDefault();
-    dispatch({ type: 'SIGNIN-EMAIL', payload: loginCredentials.email });
-    dispatch({ type: 'SIGNIN-PASSWORD', payload: loginCredentials.password });
-    dispatch({ type: 'SIGNUP-USERNAME', payload: loginCredentials.username });
   };
 
   const onSignInHandler = (e: any) => {
     e.preventDefault();
-    handleSignIn(from);
   };
 
   return (
     <Fragment>
-      {signinError && (
+      {false && (
         <div className='card authentication'>
-          <h1 className='alert tag cen md sb'>{signinError}</h1>
+          <h1 className='alert tag cen md sb'>Error</h1>
         </div>
       )}
       <div className='card authentication shdw'>

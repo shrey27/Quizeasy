@@ -1,9 +1,8 @@
 import './authentication.css';
-import { useState } from 'react';
-import { Navbar, Footer } from '../../components';
+import { Fragment, useState } from 'react';
 import { useAuthCtx } from '../../context';
 import { Link } from 'react-router-dom';
-import { SIGNIN } from '../../routes/routes';
+import { SIGNIN } from '../../routes';
 import { testCredentials } from '../../utility/constants';
 
 export default function Signup() {
@@ -41,8 +40,7 @@ export default function Signup() {
   };
 
   return (
-    <>
-      <Navbar noDrawer={true} />
+    <Fragment>
       {signupError && (
         <div className='card authentication'>
           <h1 className='alert tag cen md sb'>{signupError}</h1>
@@ -170,7 +168,6 @@ export default function Signup() {
           </Link>
         </div>
       </div>
-      <Footer />
-    </>
+    </Fragment>
   );
 }
