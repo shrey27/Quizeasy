@@ -6,6 +6,15 @@
 :root {
   --background: #1f2839;
   --white--off: rgb(231, 219, 219);
+  --text: #363636;
+  --secondary: #f7cc21;
+  --tertiary: orange;
+  --tertiary--light: #304368;
+  --white: #ffffff;
+  --green: rgb(62, 169, 62);
+  --red: #b80c28;
+  --yellow: goldenrod;
+  --navbar--font: 'Allerta Stencil', sans-serif;
 }
 
 body {
@@ -13,10 +22,72 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-size: 80%;
 }
+/* Scrollbar */
+/* width */
 ::-webkit-scrollbar {
-  width: 5px;
-  background: transparent;
+  width: 0.35rem;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  height: 100%;
+  width: fit-content;
+  background-color: var(--primary--light);
+}
+
+/* Buttons */
+.btn--auth {
+  color: var(--background);
+  background-color: var(--white);
+  border: 2px solid var(--white);
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+}
+.btn--auth:hover {
+  border: 2px solid var(--tertiary);
+  background-color: var(--tertiary);
+}
+.btn--auth--solid {
+  color: var(--white);
+  background-color: var(--tertiary);
+  border: 2px solid var(--tertiary);
+  border-radius: 4px;
+  font-size: 1.15rem;
+  padding: 0.5rem 0.75rem;
+  transition: all 100ms;
+}
+.btn--auth--solid:hover {
+  border: 2px solid var(--white);
+  background-color: var(--white);
+  color: var(--tertiary);
+}
+.btn--cancel,
+.btn--cancel--solid,
+.btn--cancel--solid:hover {
+  color: var(--red);
+  background-color: var(--white);
+  border: 2px solid var(--red);
+  border-radius: 4px;
+  font-size: 1.15rem;
+  padding: 0.5rem 0.75rem;
+}
+.btn--cancel--solid,
+.btn--cancel:hover {
+  color: var(--white);
+  background-color: var(--red);
+  border: 2px solid var(--red);
+}
+
+.btn--round {
+  padding: 0.75rem 0.45rem;
+  border-radius: 50%;
 }
 
 /* Navbar */
@@ -31,8 +102,8 @@ body {
   display: none;
   position: absolute;
   top: 2rem;
-  right: 0rem;
-  z-index: 110;
+  right: 0;
+  z-index: 2;
   background-color: var(--white);
   border: 1px solid var(--border);
   transition: display 500ms;
@@ -43,8 +114,8 @@ body {
 .submenu__item {
   display: inline-block;
   width: 100%;
-  padding: 1rem;
-  font-size: 1em;
+  padding: 0.75rem;
+  font-size: 1rem;
   font-weight: bold;
   text-align: start;
   color: var(--heading);
@@ -89,11 +160,11 @@ body {
   border-radius: 0;
 }
 .card__title {
-  margin: 0.5em 0.75em;
+  margin: 0.5rem 0.75rem;
 }
 .card__content {
-  padding-bottom: 1em;
-  margin: 0 1em;
+  padding-bottom: 1rem;
+  margin: 0 1rem;
 }
 /* common */
 .forgot {

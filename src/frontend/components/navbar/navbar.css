@@ -1,0 +1,8 @@
+@import '../../../App.css';
+
+.box__image {
+  /* border-radius: 20px 0 0 0; */
+  height: 60px;
+  width: 100px;
+  margin: 1rem;
+}

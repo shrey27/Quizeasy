@@ -1,9 +1,11 @@
 import './App.css';
+import { Navbar } from './frontend/components';
 import { availableRoutes } from './frontend/routes';
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       {availableRoutes}
     </div>
   );
