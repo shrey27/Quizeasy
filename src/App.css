@@ -21,17 +21,22 @@
   --background: rgb(195, 195, 195);
   --white--off: rgb(243, 243, 243);
 }
+[app-theme='dark'] .title {
+  --white--off: #1f2839;
+}
 
-body {
+[app-theme='dark'] .subtitle {
+  --code-span: #1f2839;
+}
+
+.App {
   background-color: var(--background);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-size: 80%;
-}
-
-[app-theme='dark']body {
-  background-color: rgb(243, 243, 243);
+  height: 100vh;
+  transition: all 200ms;
 }
 
 /* Scrollbar */
