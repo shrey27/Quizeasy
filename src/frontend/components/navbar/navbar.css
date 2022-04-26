@@ -13,3 +13,6 @@
   border-radius: 5px;
   padding: 0.35rem 0.65rem;
 }
+.login__link {
+  color: var(--white--off);
+}

@@ -8,42 +8,26 @@ import { testCredentials } from '../../utility/constants';
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showCnfPassword, setShowCnfPassword] = useState(false);
+  const [emailDetails, setEmailDetails] = useState({ username: '', email: '', password: '', confirmPassword: '' })
+  const [error, setError] = useState({ nameError: false, emailError: false, passwordError: false, cnfPasswordError: false })
 
   const {
-    signupEmail,
-    signupEmailError,
-    signupPassword,
-    signupPasswordError,
-    username,
-    userNameError,
-    cnfPassword,
-    cnfpasswordError,
-    signupError,
-    handleSignUp,
-    dispatch
+    authUser
   } = useAuthCtx();
 
-  const onSignUpHandler = (e) => {
-    e.preventDefault();
-    handleSignUp();
+  const onSignUpHandler = () => {
+    // e.preventDefault();
   };
 
-  const onUsingTestCredentials = (e) => {
-    e.preventDefault();
-    dispatch({ type: 'SIGNUP-USERNAME', payload: testCredentials.username });
-    dispatch({ type: 'SIGNUP-EMAIL', payload: testCredentials.email });
-    dispatch({ type: 'SIGNUP-PASSWORD', payload: testCredentials.password });
-    dispatch({
-      type: 'CONFIRM-PASSWORD',
-      payload: testCredentials.confirmpassword
-    });
+  const onUsingTestCredentials = () => {
+    // e.preventDefault();
   };
 
   return (
     <Fragment>
-      {signupError && (
+      {false && (
         <div className='card authentication'>
-          <h1 className='alert tag cen md sb'>{signupError}</h1>
+          <h1 className='alert tag cen md sb'>Error</h1>
         </div>
       )}
       <div className='card authentication shdw'>
@@ -62,14 +46,14 @@ export default function Signup() {
               placeholder='Enter your Name'
               autoComplete='off'
               aria-autocomplete='none'
-              value={username}
+              value={emailDetails.username}
               onChange={(e) =>
-                dispatch({ type: 'SIGNUP-USERNAME', payload: e.target.value })
+                setEmailDetails({ ...emailDetails, username: e.target.value })
               }
-              onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+              onFocus={() => setError({ ...error, nameError: false })}
               required
             />
-            <h1 className='input__error'>{userNameError}</h1>
+            {error.nameError && <h1 className='input__error'>Please enter the name</h1>}
           </div>
           <div className='authentication__input'>
             <label htmlFor='email__signup' className='label'>
@@ -83,14 +67,14 @@ export default function Signup() {
               placeholder='Enter Email'
               autoComplete='off'
               aria-autocomplete='none'
-              value={signupEmail}
+              value={emailDetails.email}
               onChange={(e) =>
-                dispatch({ type: 'SIGNIN-EMAIL', payload: e.target.value })
+                setEmailDetails({ ...emailDetails, email: e.target.value })
               }
-              onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+              onFocus={() => setError({ ...error, emailError: false })}
               required
             />
-            <h1 className='input__error'>{signupEmailError}</h1>
+            {error.emailError && <h1 className='input__error'>Please enter the email in correct format</h1>}
           </div>
           <div className='authentication__input'>
             <label htmlFor='password__signup' className='label'>
@@ -104,11 +88,11 @@ export default function Signup() {
                 id='password__signup'
                 autoComplete='off'
                 placeholder='Enter Password'
-                value={signupPassword}
+                value={emailDetails.password}
                 onChange={(e) =>
-                  dispatch({ type: 'SIGNIN-PASSWORD', payload: e.target.value })
+                  setEmailDetails({ ...emailDetails, password: e.target.value })
                 }
-                onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+                onFocus={() => setError({ ...error, passwordError: false })}
                 required
               />
               <i
@@ -116,7 +100,7 @@ export default function Signup() {
                 onClick={() => setShowPassword((e) => !e)}
               ></i>
             </div>
-            <h1 className='input__error'>{signupPasswordError}</h1>
+            {error.passwordError && <h1 className='input__error'>Please enter atleast 8 chars long password</h1>}
           </div>
 
           <div className='authentication__input'>
@@ -131,14 +115,11 @@ export default function Signup() {
                 id='cnf__password__signup'
                 autoComplete='off'
                 placeholder='Re-enter Password'
-                value={cnfPassword}
+                value={emailDetails.confirmPassword}
                 onChange={(e) =>
-                  dispatch({
-                    type: 'CONFIRM-PASSWORD',
-                    payload: e.target.value
-                  })
+                  setEmailDetails({ ...emailDetails, confirmPassword: e.target.value })
                 }
-                onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+                onFocus={() => setError({ ...error, cnfPasswordError: false })}
                 required
               />
               <i
@@ -146,7 +127,7 @@ export default function Signup() {
                 onClick={() => setShowCnfPassword((e) => !e)}
               ></i>
             </div>
-            <h1 className='input__error'>{cnfpasswordError}</h1>
+            {error.cnfPasswordError && <h1 className='input__error'>Password and confirm password should match</h1>}
           </div>
           <button
             type='submit'

@@ -1,14 +1,16 @@
 import './navbar.css';
-import { Link, useLocation } from 'react-router-dom';
-import { LANDING } from '../../routes';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { LANDING, SIGNIN } from '../../routes';
 import { useTheme } from '../../context';
 
 export function Navbar() {
     const { pathname } = useLocation();
+    const navigate = useNavigate();
     const { theme, switchTheme } = useTheme();
+
     return <div>
         <nav className="navbar shadow">
-            <section className="start">
+            <section className="begin">
                 <Link to={LANDING}>
                     <img className="box__image" src='logo.png' alt='logo' />
                 </Link>
@@ -30,7 +32,7 @@ export function Navbar() {
                 <div className="menu">
                     {theme === 'light' ? <button className='btn btn--auth--solid sm sb' onClick={switchTheme}><i className="fa-solid fa-moon"></i></button>
                         : <button className='btn btn--dark sm sb' onClick={switchTheme}><i className="fa-solid fa-sun"></i></button>
-                    }<button className='btn btn--cancel--solid sm sb' >Login<i className="fa-solid fa-arrow-right-to-bracket"></i></button>
+                    }<button className='btn btn--cancel--solid sm sb' onClick={() => navigate(SIGNIN)}>Login<i className="fa-solid fa-arrow-right-to-bracket"></i></button>
                 </div>
             </section>
         </nav>

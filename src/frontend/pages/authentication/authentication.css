@@ -15,11 +15,15 @@
   justify-content: flex-start;
   margin: 0.5rem 0;
 }
+.input {
+  border-radius: 5px;
+  padding: 0.35rem 0.5rem;
+}
 .label {
-  color: var(--tertiary);
+  color: var(--text);
 }
 .forgot {
-  color: var(--tertiary);
+  color: var(--text);
   text-decoration: underline;
   font-weight: 500;
 }
@@ -46,10 +50,12 @@
   align-items: center;
   border: 2px solid var(--primary--light);
   background-color: var(--white);
+  border-radius: 5px;
 }
 .input.input__password {
   width: 95%;
   border: none;
+  padding: 0.35rem 0.5rem;
 }
 .input__eye {
   color: var(--black);
@@ -67,7 +73,7 @@
   border-radius: 5px;
 }
 @media screen and (min-width: 768px) {
-  .authentication {
-    width: 30rem;
+  .card.authentication {
+    max-width: 25rem;
   }
 }

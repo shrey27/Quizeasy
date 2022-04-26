@@ -7,12 +7,15 @@ import { loginCredentials } from '../../utility/constants';
 
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
+  const [emailDetails, setEmailDetails] = useState({ email: '', password: '' })
+  const [error, setError] = useState({ emailError: false, passwordError: false })
+
   const {
     authUser
   } = useAuthCtx();
 
   const location: Object = useLocation();
-  const from = location.state.from.pathname || '/';
+  // const from = location.state.from.pathname || '/';
 
   const onSignInTestCredentials = (e: any) => {
     e.preventDefault();
@@ -38,20 +41,18 @@ export default function Signin() {
               Enter Your Email ID
             </label>
             <input
-              className='input sm-s'
+              className='input'
               type='email'
               name='email__signin'
               id='email__signin'
               placeholder='Enter Email'
               autoComplete='off'
-              value={email}
-              onChange={(e) =>
-                dispatch({ type: 'SIGNIN-EMAIL', payload: e.target.value })
-              }
-              onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+              value={emailDetails.email}
+              onChange={(e) => setEmailDetails({ ...emailDetails, email: e.target.value })}
+              onFocus={() => setError({ ...error, emailError: false })}
               required
             />
-            <h1 className='input__error'>{emailError}</h1>
+            {error.emailError && <h1 className='input__error'>Enter the email in correct format</h1>}
           </div>
           <div className='authentication__input'>
             <label htmlFor='password__signin' className='label'>
@@ -59,17 +60,15 @@ export default function Signin() {
             </label>
             <div className='input__container'>
               <input
-                className='input input__password sm-s'
+                className='input input__password'
                 type={showPassword ? 'text' : 'password'}
                 name='password__signin'
                 id='password__signin'
                 autoComplete='off'
                 placeholder='Password'
-                value={password}
-                onChange={(e) =>
-                  dispatch({ type: 'SIGNIN-PASSWORD', payload: e.target.value })
-                }
-                onFocus={() => dispatch({ type: 'CLEAR-ALL-ERRORS' })}
+                value={emailDetails.password}
+                onChange={(e) => setEmailDetails({ ...emailDetails, password: e.target.value })}
+                onFocus={() => setError({ ...error, passwordError: false })}
                 required
               />
               <i
@@ -77,8 +76,7 @@ export default function Signin() {
                 onClick={() => setShowPassword((e) => !e)}
               ></i>
             </div>
-
-            <h1 className='input__error'>{passwordError}</h1>
+            {error.passwordError && <h1 className='input__error'>Enter the password in correct format</h1>}
           </div>
           <button
             type='submit'

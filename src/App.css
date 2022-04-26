@@ -159,7 +159,7 @@
 /* Media Query */
 @media screen and (min-width: 768px) {
   .card {
-    height: 20rem;
+    min-height: 20rem;
     width: auto;
   }
   .menu__btn__name {
