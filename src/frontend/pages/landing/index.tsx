@@ -1,4 +1,3 @@
-import React from 'react';
 import { HOMEPAGE } from '../../routes';
 import { Link } from 'react-router-dom';
 import './landing.css';
@@ -23,11 +22,14 @@ export default function Landing() {
                     challenging and fun.
                 </p>
                 <div className="flex-ct-ct">
-                    <Link to={HOMEPAGE} className="btn btn--cancel--solid sb"
+                    <Link to={HOMEPAGE} className="btn btn--cancel--solid md sb"
                     >Home</Link>
                     <a
-                        href="https://github.com/shrey27/Quiz-App-NeogCamp"
-                        className="btn btn--auth sb"
+                        href="https://github.com/shrey27/Quizeasy"
+                        className="btn btn--auth md sb"
+                        target='_blank'
+                        rel='noreferrer'
+
                     >Github</a
                     >
                 </div>

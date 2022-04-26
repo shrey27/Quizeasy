@@ -1,10 +1,12 @@
 import './App.css';
 import { Navbar } from './frontend/components';
 import { availableRoutes } from './frontend/routes';
+import { useTheme } from './frontend/context';
 
 function App() {
+  const { theme } = useTheme();
   return (
-    <div className="App">
+    <div className="App" app-theme={theme}>
       <Navbar />
       {availableRoutes}
     </div>
@@ -12,8 +14,8 @@ function App() {
 }
 
 export default App;
-/**
 
+/**
 import { db } from './frontend/firebase/firebase';
 import {
   collection,
