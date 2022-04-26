@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
-import { store } from './frontend/store/store';
+import { store } from './frontend/store';
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from './frontend/context';
+import {
+  AuthenticationProvider
+} from './frontend/context';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,11 +16,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
-      </Provider>
+      <AuthenticationProvider>
+        <Provider store={store}>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </Provider>
+      </AuthenticationProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
