@@ -11,3 +11,8 @@ export const loginCredentials = {
   username: 'Carl Jones',
   authenticationUserId: 'U0'
 };
+
+export const regexArray = {
+  email:
+    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/
+};

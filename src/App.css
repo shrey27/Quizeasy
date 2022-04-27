@@ -28,6 +28,10 @@
 [app-theme='dark'] .subtitle {
   --code-span: #1f2839;
 }
+/* Colors */
+.text {
+  color: var(--text);
+}
 
 .App {
   background-color: var(--background);
@@ -35,6 +39,7 @@
   padding: 0;
   box-sizing: border-box;
   font-size: 80%;
+  height: 100vh;
   transition: all 200ms;
 }
 
@@ -56,6 +61,9 @@
 }
 
 /* Buttons */
+.btn {
+  margin: 1rem 0;
+}
 .btn--auth {
   color: var(--text);
   background-color: var(--white);

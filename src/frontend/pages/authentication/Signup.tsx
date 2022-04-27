@@ -14,10 +14,6 @@ export default function Signup() {
     // e.preventDefault();
   };
 
-  const onUsingTestCredentials = () => {
-    // e.preventDefault();
-  };
-
   return (
     <div className='signupPage'>
       {false && (
@@ -45,9 +41,7 @@ export default function Signup() {
               onChange={(e) =>
                 setEmailDetails({ ...emailDetails, username: e.target.value })
               }
-              onFocus={() => setError({ ...error, nameError: false })}
-              required
-            />
+              onFocus={() => setError({ ...error, nameError: false })}            />
             {error.nameError && <h1 className='input__error'>Please enter the name</h1>}
           </div>
           <div className='authentication__input'>
@@ -66,9 +60,7 @@ export default function Signup() {
               onChange={(e) =>
                 setEmailDetails({ ...emailDetails, email: e.target.value })
               }
-              onFocus={() => setError({ ...error, emailError: false })}
-              required
-            />
+              onFocus={() => setError({ ...error, emailError: false })}            />
             {error.emailError && <h1 className='input__error'>Please enter the email in correct format</h1>}
           </div>
           <div className='authentication__input'>
@@ -88,7 +80,6 @@ export default function Signup() {
                   setEmailDetails({ ...emailDetails, password: e.target.value })
                 }
                 onFocus={() => setError({ ...error, passwordError: false })}
-                required
               />
               <i
                 className='fa-solid fa-eye input__eye'
@@ -115,7 +106,6 @@ export default function Signup() {
                   setEmailDetails({ ...emailDetails, confirmPassword: e.target.value })
                 }
                 onFocus={() => setError({ ...error, cnfPasswordError: false })}
-                required
               />
               <i
                 className='fa-solid fa-eye input__eye'
@@ -131,12 +121,12 @@ export default function Signup() {
           >
             SIGN UP
           </button>
-          <button
+          {/* <button
             className='btn btn--wide btn--auth sb'
             onClick={onUsingTestCredentials}
           >
             TEST-CREDENTIALS
-          </button>
+          </button> */}
         </form>
         <div className='signin__links'>
           <Link to={SIGNIN} className='already sm'>

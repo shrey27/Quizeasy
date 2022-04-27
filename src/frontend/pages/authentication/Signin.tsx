@@ -4,33 +4,46 @@ import { Link, useNavigate } from 'react-router-dom';
 import { SIGNUP } from '../../routes';
 import { signInHandler } from '../../service/userActions';
 import { useAppDispatch } from '../../utility/hooks';
+import { regexArray } from '../../utility/constants';
 
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
   const [emailDetails, setEmailDetails] = useState({
     email: 'carljones@gmail.com', password: 'carljones1234'
   })
-  const [error, setError] = useState({ emailError: false, passwordError: false })
+  const [error, setError] = useState(false)
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const validateFields = () => {
+    const { email, password } = emailDetails;
+    let errors: string[] = [];
+    if (!email || !regexArray.email.test(email)) {
+      errors.push('emailError');
+    }
+    if (password.length < 8) {
+      errors.push('passwordError');
+    }
+    if (errors.length) {
+      setError(true);
+      return false;
+    } return true;
+  }
 
   const onSignInHandler = (e: any) => {
     e.preventDefault();
     const { email, password } = emailDetails;
-    dispatch(signInHandler(email, password));
-    navigate('/homepage')
+    if (validateFields()) {
+      dispatch(signInHandler(email, password, navigate, '/homepage'));
+    }
   };
 
   return (
     <Fragment>
-      {
-        false && (
-          <div className='card authentication'>
-            <h1 className='alert tag cen md sb'>Error</h1>
-          </div>
-        )
-      }
       < div className='card authentication shdw' >
+        {error && (
+          <h1 className='alert text cen md sb'>Enter the details in proper format</h1>
+        )}
         <h1 className='lg sb cen xs-s mg-full'>SIGNIN</h1>
         <hr />
         <form action='#' className='sm-s'>
@@ -47,10 +60,8 @@ export default function Signin() {
               autoComplete='off'
               value={emailDetails.email}
               onChange={(e) => setEmailDetails({ ...emailDetails, email: e.target.value })}
-              onFocus={() => setError({ ...error, emailError: false })}
-              required
+              onFocus={() => setError(false)}
             />
-            {error.emailError && <h1 className='input__error'>Enter the email in correct format</h1>}
           </div>
           <div className='authentication__input'>
             <label htmlFor='password__signin' className='label'>
@@ -66,15 +77,13 @@ export default function Signin() {
                 placeholder='Password'
                 value={emailDetails.password}
                 onChange={(e) => setEmailDetails({ ...emailDetails, password: e.target.value })}
-                onFocus={() => setError({ ...error, passwordError: false })}
-                required
+                onFocus={() => setError(false)}
               />
               <i
                 className='fa-solid fa-eye input__eye'
                 onClick={() => setShowPassword((e) => !e)}
               ></i>
             </div>
-            {error.passwordError && <h1 className='input__error'>Enter the password in correct format</h1>}
           </div>
           <button
             type='submit'
