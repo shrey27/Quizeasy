@@ -1,27 +1,54 @@
 import './authentication.css';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SIGNIN } from '../../routes';
-// import { testCredentials } from '../../utility/constants';
+import { regexArray } from '../../utility/constants';
+import { signUpHandler } from '../../service/userActions';
+import { useAppDispatch } from '../../utility/hooks';
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showCnfPassword, setShowCnfPassword] = useState(false);
-  const [emailDetails, setEmailDetails] = useState({ username: '', email: '', password: '', confirmPassword: '' })
-  const [error, setError] = useState({ nameError: false, emailError: false, passwordError: false, cnfPasswordError: false })
+  const [emailDetails, setEmailDetails] = useState({ username: 'John Doe', email: 'johndoe12@gmail.com', password: 'johndoe1234', confirmPassword: 'johndoe1234' })
+  const [error, setError] = useState('')
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const onSignUpHandler = () => {
-    // e.preventDefault();
+  const validateFields = () => {
+    const { username, email, confirmPassword, password } = emailDetails;
+    if (!email || !password || !confirmPassword || !username) {
+      setError("FILL ALL THE DETAILS IN PROPER FORMAT");
+      return false;
+    }
+    if (!regexArray.email.test(email)) {
+      setError("ENTER EMAIL IN CORRECT FORMAT");
+      return false;
+    }
+    if (password.length < 8) {
+      setError("PASSWROD MUST BE 8 CHARS LONG");
+      return false;
+    }
+    if (confirmPassword !== password) {
+      setError("PASSWROD AND CONFRIM PASSWORD DO NOT MATCH");
+      return false;
+    }
+    return true;
+  }
+
+  const onSignUpHandler = (e: any) => {
+    e.preventDefault();
+    const { username, email, password } = emailDetails;
+    if (validateFields()) {
+      dispatch(signUpHandler(username, email, password, navigate, '/homepage'));
+    }
   };
 
   return (
     <div className='signupPage'>
-      {false && (
-        <div className='card authentication'>
-          <h1 className='alert tag cen md sb'>Error</h1>
-        </div>
-      )}
       <div className='card authentication shdw'>
+        {error.length && (
+          <h1 className='alert text cen sm'>{error}</h1>
+        )}
         <h1 className='lg sb cen xs-s mg-full'>SIGN UP</h1>
         <hr />
         <form action='#' className='sm-s'>
@@ -41,8 +68,7 @@ export default function Signup() {
               onChange={(e) =>
                 setEmailDetails({ ...emailDetails, username: e.target.value })
               }
-              onFocus={() => setError({ ...error, nameError: false })}            />
-            {error.nameError && <h1 className='input__error'>Please enter the name</h1>}
+              onFocus={() => setError('')} />
           </div>
           <div className='authentication__input'>
             <label htmlFor='email__signup' className='label'>
@@ -60,8 +86,7 @@ export default function Signup() {
               onChange={(e) =>
                 setEmailDetails({ ...emailDetails, email: e.target.value })
               }
-              onFocus={() => setError({ ...error, emailError: false })}            />
-            {error.emailError && <h1 className='input__error'>Please enter the email in correct format</h1>}
+              onFocus={() => setError('')} />
           </div>
           <div className='authentication__input'>
             <label htmlFor='password__signup' className='label'>
@@ -79,16 +104,14 @@ export default function Signup() {
                 onChange={(e) =>
                   setEmailDetails({ ...emailDetails, password: e.target.value })
                 }
-                onFocus={() => setError({ ...error, passwordError: false })}
+                onFocus={() => setError('')}
               />
               <i
                 className='fa-solid fa-eye input__eye'
                 onClick={() => setShowPassword((e) => !e)}
               ></i>
             </div>
-            {error.passwordError && <h1 className='input__error'>Please enter atleast 8 chars long password</h1>}
           </div>
-
           <div className='authentication__input'>
             <label htmlFor='cnf__password__signup' className='label'>
               Confirm Password
@@ -105,14 +128,13 @@ export default function Signup() {
                 onChange={(e) =>
                   setEmailDetails({ ...emailDetails, confirmPassword: e.target.value })
                 }
-                onFocus={() => setError({ ...error, cnfPasswordError: false })}
+                onFocus={() => setError('')}
               />
               <i
                 className='fa-solid fa-eye input__eye'
                 onClick={() => setShowCnfPassword((e) => !e)}
               ></i>
             </div>
-            {error.cnfPasswordError && <h1 className='input__error'>Password and confirm password should match</h1>}
           </div>
           <button
             type='submit'
@@ -121,12 +143,6 @@ export default function Signup() {
           >
             SIGN UP
           </button>
-          {/* <button
-            className='btn btn--wide btn--auth sb'
-            onClick={onUsingTestCredentials}
-          >
-            TEST-CREDENTIALS
-          </button> */}
         </form>
         <div className='signin__links'>
           <Link to={SIGNIN} className='already sm'>

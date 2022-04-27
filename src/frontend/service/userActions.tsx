@@ -23,7 +23,7 @@ export const signInHandler = (email: string, password: string, navigate: Functio
     };
 };
 
-export const signUpHandler = (email: string, password: string, navigate: Function, pathname: string) => {
+export const signUpHandler = (username: string, email: string, password: string, navigate: Function, pathname: string) => {
     return async (dispatch: any) => {
         dispatch(userActions.toggleLoader(true));
         const sendUserDetails = async () => {

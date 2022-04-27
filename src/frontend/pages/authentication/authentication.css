@@ -32,7 +32,7 @@
   font-weight: 500;
 }
 .already {
-  color: var(--tertiary);
+  color: var(--text);
   text-decoration: underline;
 }
 .input__error {
