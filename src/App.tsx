@@ -1,10 +1,21 @@
 import './App.css';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Navbar } from './frontend/components';
 import { availableRoutes } from './frontend/routes';
 import { useTheme } from './frontend/context';
+import { userActions } from './frontend/store/userSlice';
 
 function App() {
   const { theme } = useTheme();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const localStorageAuth = localStorage.getItem("authToken");
+    const localStorageUser = localStorage.getItem("authUser");
+    dispatch(userActions.getToken(localStorageAuth ? localStorageAuth : ''));
+    dispatch(userActions.getUser(localStorageUser ? JSON.parse(localStorageUser) : null));
+  }, [dispatch])
+
   return (
     <div className="App" app-theme={theme}>
       <Navbar />

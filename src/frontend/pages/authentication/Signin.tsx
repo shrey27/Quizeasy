@@ -1,38 +1,36 @@
 import './authentication.css';
 import { useState, Fragment } from 'react';
-import { useAuthCtx } from '../../context';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SIGNUP } from '../../routes';
-import { loginCredentials } from '../../utility/constants';
+import { signInHandler } from '../../service/userActions';
+import { useAppDispatch } from '../../utility/hooks';
 
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
-  const [emailDetails, setEmailDetails] = useState({ email: '', password: '' })
+  const [emailDetails, setEmailDetails] = useState({
+    email: 'carljones@gmail.com', password: 'carljones1234'
+  })
   const [error, setError] = useState({ emailError: false, passwordError: false })
-
-  const {
-    authUser
-  } = useAuthCtx();
-
-  const location: Object = useLocation();
-  // const from = location.state.from.pathname || '/';
-
-  const onSignInTestCredentials = (e: any) => {
-    e.preventDefault();
-  };
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onSignInHandler = (e: any) => {
     e.preventDefault();
+    const { email, password } = emailDetails;
+    dispatch(signInHandler(email, password));
+    navigate('/homepage')
   };
 
   return (
     <Fragment>
-      {false && (
-        <div className='card authentication'>
-          <h1 className='alert tag cen md sb'>Error</h1>
-        </div>
-      )}
-      <div className='card authentication shdw'>
+      {
+        false && (
+          <div className='card authentication'>
+            <h1 className='alert tag cen md sb'>Error</h1>
+          </div>
+        )
+      }
+      < div className='card authentication shdw' >
         <h1 className='lg sb cen xs-s mg-full'>SIGNIN</h1>
         <hr />
         <form action='#' className='sm-s'>
@@ -85,12 +83,12 @@ export default function Signin() {
           >
             SIGNIN
           </button>
-          <button
+          {/* <button
             className='btn btn--wide btn--auth sb'
             onClick={onSignInTestCredentials}
           >
             GUEST-USER
-          </button>
+          </button> */}
         </form>
         <div className='signin__links'>
           <Link to={SIGNUP} className='forgot sm'>
@@ -100,7 +98,7 @@ export default function Signin() {
             Sign Up
           </Link>
         </div>
-      </div>
-    </Fragment>
+      </div >
+    </Fragment >
   );
 }

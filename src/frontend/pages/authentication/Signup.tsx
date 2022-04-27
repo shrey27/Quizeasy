@@ -1,19 +1,14 @@
 import './authentication.css';
-import { Fragment, useState } from 'react';
-import { useAuthCtx } from '../../context';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SIGNIN } from '../../routes';
-import { testCredentials } from '../../utility/constants';
+// import { testCredentials } from '../../utility/constants';
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showCnfPassword, setShowCnfPassword] = useState(false);
   const [emailDetails, setEmailDetails] = useState({ username: '', email: '', password: '', confirmPassword: '' })
   const [error, setError] = useState({ nameError: false, emailError: false, passwordError: false, cnfPasswordError: false })
-
-  const {
-    authUser
-  } = useAuthCtx();
 
   const onSignUpHandler = () => {
     // e.preventDefault();
@@ -24,7 +19,7 @@ export default function Signup() {
   };
 
   return (
-    <Fragment>
+    <div className='signupPage'>
       {false && (
         <div className='card authentication'>
           <h1 className='alert tag cen md sb'>Error</h1>
@@ -149,6 +144,6 @@ export default function Signup() {
           </Link>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 }

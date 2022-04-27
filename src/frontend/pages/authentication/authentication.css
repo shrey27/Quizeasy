@@ -1,9 +1,13 @@
 @import '../../../App.css';
 
 /* Authentication Pages */
+.signupPage {
+  height: 90vh;
+  background-color: var(--background);
+}
 .authentication {
   width: 90%;
-  margin: 1rem auto;
+  margin: 2rem auto;
   background-color: var(--white);
   color: var(--tertiary);
   border: 2px solid var(--dismiss);
