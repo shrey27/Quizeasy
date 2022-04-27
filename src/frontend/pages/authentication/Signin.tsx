@@ -1,7 +1,7 @@
 import './authentication.css';
 import { useState, Fragment } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { SIGNUP } from '../../routes';
+import { SIGNUP, HOMEPAGE } from '../../routes';
 import { signInHandler } from '../../service/userActions';
 import { useAppDispatch } from '../../utility/hooks';
 import { regexArray } from '../../utility/constants';
@@ -34,7 +34,7 @@ export default function Signin() {
     e.preventDefault();
     const { email, password } = emailDetails;
     if (validateFields()) {
-      dispatch(signInHandler(email, password, navigate, '/homepage'));
+      dispatch(signInHandler(email, password, navigate, HOMEPAGE));
     }
   };
 

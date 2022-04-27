@@ -1,7 +1,7 @@
 import './authentication.css';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { SIGNIN } from '../../routes';
+import { SIGNIN, HOMEPAGE } from '../../routes';
 import { regexArray } from '../../utility/constants';
 import { signUpHandler } from '../../service/userActions';
 import { useAppDispatch } from '../../utility/hooks';
@@ -39,7 +39,7 @@ export default function Signup() {
     e.preventDefault();
     const { username, email, password } = emailDetails;
     if (validateFields()) {
-      dispatch(signUpHandler(username, email, password, navigate, '/homepage'));
+      dispatch(signUpHandler(username, email, password, navigate, HOMEPAGE));
     }
   };
 
