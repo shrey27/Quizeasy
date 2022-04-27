@@ -22,11 +22,11 @@ export default function Landing() {
                     challenging and fun.
                 </p>
                 <div className="flex-ct-ct">
-                    <Link to={HOMEPAGE} className="btn btn--cancel--solid md sb"
+                    <Link to={HOMEPAGE} className="btn btn--cancel--solid md sb link--btn"
                     >Get Started</Link>
                     <a
                         href="https://github.com/shrey27/Quizeasy"
-                        className="btn btn--auth md sb"
+                        className="btn btn--auth md sb link--btn"
                         target='_blank'
                         rel='noreferrer'
 

@@ -8,7 +8,7 @@
   --white--off: rgb(243, 243, 243);
   --text: #1f2839;
   --secondary: #f7cc21;
-  --tertiary: orange;
+  --tertiary: rgb(238, 160, 15);
   --tertiary--hover: rgb(223, 154, 27);
   --white: #ffffff;
   --green: rgb(62, 169, 62);
@@ -27,6 +27,10 @@
 
 [app-theme='dark'] .subtitle {
   --code-span: #1f2839;
+}
+/* Colors */
+.text {
+  color: var(--text);
 }
 
 .App {
@@ -57,6 +61,9 @@
 }
 
 /* Buttons */
+.btn {
+  margin: 1rem 0;
+}
 .btn--auth {
   color: var(--text);
   background-color: var(--white);
@@ -159,7 +166,7 @@
 /* Media Query */
 @media screen and (min-width: 768px) {
   .card {
-    height: 20rem;
+    min-height: 20rem;
     width: auto;
   }
   .menu__btn__name {
