@@ -41,6 +41,7 @@ const docRef = collection(db, collectionName);
 import {
   collection,
   doc,
+  getDoc,
   getDocs,
   addDoc,
   deleteDoc,
@@ -59,6 +60,12 @@ useEffect(() => {
       console.log(dataList);
     })()
 })
+
+const docRef = doc(db, collectionName, 'books');
+  (async function () {
+      const docSnap = await getDoc(docRef);
+      console.log("Document data:", docSnap.data());
+  })()
 
 const getAddress = async () => {
     const data = await getDocs(docRef);
