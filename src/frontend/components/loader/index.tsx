@@ -6,7 +6,7 @@ export function Loader() {
   const { theme } = useTheme();
   return (
     <div className='loader'>
-      <img src={theme === 'light' ? darkImg : lightImg} alt='loader' />
+      <img src={theme === 'dark' ? darkImg : lightImg} alt='loader' />
     </div>
   );
 }
