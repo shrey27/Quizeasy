@@ -1,0 +1,42 @@
+@import '../../../App.css';
+
+.quiz__body {
+  width: 90%;
+  margin: auto;
+}
+.score,
+.question {
+  color: var(--white);
+}
+.question--title {
+  color: var(--badge-away);
+}
+.input__radio {
+  display: none;
+}
+.input__label {
+  display: inline-block;
+  margin: auto;
+  background-color: #4a5568;
+  width: 100%;
+  padding: 1.25rem;
+  font-size: 1.25em;
+  font-weight: 600;
+  text-align: center;
+  margin: 1rem auto;
+}
+.input__label:hover {
+  background-color: #373f4d;
+}
+.input__radio:checked + .input__label {
+  background-color: var(--badge-online);
+}
+.nav--btn {
+  color: var(--button-primary);
+  margin: 2rem 0;
+}
+@media screen and (min-width: 768px) {
+  .quiz__body {
+    width: 40rem;
+  }
+}

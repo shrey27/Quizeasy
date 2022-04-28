@@ -14,6 +14,7 @@ export interface OptionsObject {
 }
 
 export interface ElementObject {
+    id: String,
     title: String,
     description: String,
     banner: String,

@@ -1,8 +1,9 @@
 import './category.css';
 import { Fragment } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useCategoryId, ElementObject } from '../../utility';
 import { Loader } from '../../components';
+import { QUIZ } from '../../routes';
 
 export default function Category() {
     const { categoryId } = useParams();
@@ -27,7 +28,7 @@ export default function Category() {
                                 <p className="card__content">
                                     {element.description}
                                 </p>
-                                <button className="btn btn--dark">Play Now</button>
+                                <Link to={QUIZ + `/${element.id}`} className="btn btn--dark">Play Now</Link>
                             </section>
                         </div>
                     })}
