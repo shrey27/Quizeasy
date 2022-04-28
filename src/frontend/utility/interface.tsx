@@ -7,6 +7,9 @@ export interface ThemeProviderProps {
     children?: React.ReactNode;
 }
 
+export interface QuestionProps {
+    quizObject: ElementObject
+}
 export interface OptionsObject {
     one: String,
     two: String,
@@ -22,3 +25,4 @@ export interface ElementObject {
     answers: Array<String>,
     options: Array<OptionsObject>
 }
+

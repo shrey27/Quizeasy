@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState= {
+const initialState = {
     userInfo: {},
     token: '',
+    categoryQuiz: [],
     loader: false
 }
+
 const userSlice = createSlice({
     name: 'users',
     initialState,
@@ -19,7 +21,11 @@ const userSlice = createSlice({
         getToken(state, action) {
             const token = action.payload
             state.token = token
-        }
+        },
+        getCategoryQuiz(state, action) {
+            const categoryQuizObject = action.payload
+            state.categoryQuiz = categoryQuizObject
+        },
     }
 });
 
