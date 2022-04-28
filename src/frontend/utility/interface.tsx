@@ -8,8 +8,10 @@ export interface ThemeProviderProps {
 }
 
 export interface QuestionProps {
-    quizObject: ElementObject
+    question: String,
+    options: OptionsObject
 }
+
 export interface OptionsObject {
     one: String,
     two: String,
