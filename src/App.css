@@ -17,15 +17,15 @@
   --navbar--font: 'Allerta Stencil', sans-serif;
 }
 
-[app-theme='dark'] {
+[app-theme='light'] {
   --background: rgb(195, 195, 195);
   --white--off: rgb(243, 243, 243);
 }
-[app-theme='dark'] .title {
+[app-theme='light'] .title {
   --white--off: #1f2839;
 }
 
-[app-theme='dark'] .subtitle {
+[app-theme='light'] .subtitle {
   --code-span: #1f2839;
 }
 /* Colors */
@@ -33,12 +33,18 @@
   color: var(--text);
 }
 
+html {
+  font-size: 88%;
+}
+body {
+  background-color: rgb(195, 195, 195);
+}
+
 .App {
   background-color: var(--background);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 80%;
   height: 100vh;
   transition: all 200ms;
 }
@@ -129,7 +135,7 @@
 .title,
 .subtitle {
   color: var(--white--off);
-  margin: 2rem 0;
+  margin: 0.5rem 0;
 }
 .subtitle {
   color: var(--code-span);
@@ -140,7 +146,7 @@
   align-items: flex-start;
   justify-content: center;
   gap: 1rem;
-  margin: 1rem;
+  margin: 0.75rem 1rem;
 }
 .card {
   border: none;

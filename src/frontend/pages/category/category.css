@@ -1,0 +1,16 @@
+@import '../../../App.css';
+
+.categoryTitle {
+  text-transform: capitalize;
+}
+.card__subtitle {
+  color: var(--primary);
+  font-size: 1rem;
+}
+.genre {
+  width: 18rem;
+  height: 30rem;
+}
+.genre .card__banner {
+  height: 40%;
+}

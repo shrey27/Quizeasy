@@ -3,8 +3,9 @@ import { useState, Fragment } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SIGNUP, HOMEPAGE } from '../../routes';
 import { signInHandler } from '../../service/userActions';
-import { useAppDispatch } from '../../utility/hooks';
-import { regexArray } from '../../utility/constants';
+import { useAppDispatch, regexArray, useAppSelector } from '../../utility';
+import { Loader } from '../../components';
+import { useTheme } from '../../context';
 
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,6 +15,8 @@ export default function Signin() {
   const [error, setError] = useState(false)
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const loader = useAppSelector(state => state.users.loader);
+  const { theme } = useTheme();
 
   const validateFields = () => {
     const { email, password } = emailDetails;
@@ -34,13 +37,13 @@ export default function Signin() {
     e.preventDefault();
     const { email, password } = emailDetails;
     if (validateFields()) {
-      dispatch(signInHandler(email, password, navigate, HOMEPAGE));
+      dispatch(signInHandler(email, password, navigate, HOMEPAGE, theme === 'dark' ? 'dark' : 'light'));
     }
   };
 
   return (
     <Fragment>
-      < div className='card authentication shdw' >
+      {loader ? <Loader /> : < div className='card authentication shdw' >
         {error && (
           <h1 className='alert text cen md sb'>Enter the details in proper format</h1>
         )}
@@ -107,7 +110,7 @@ export default function Signin() {
             Sign Up
           </Link>
         </div>
-      </div >
+      </div >}
     </Fragment >
   );
 }

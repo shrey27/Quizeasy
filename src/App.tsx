@@ -5,6 +5,8 @@ import { Navbar } from './frontend/components';
 import { availableRoutes } from './frontend/routes';
 import { useTheme } from './frontend/context';
 import { userActions } from './frontend/store/userSlice';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { theme } = useTheme();
@@ -23,6 +25,7 @@ function App() {
     <div className="App" app-theme={theme}>
       <Navbar />
       {availableRoutes}
+      <ToastContainer style={{ fontWeight: '500', fontSize: '1.15rem' }} />
     </div>
   );
 }
@@ -31,16 +34,12 @@ export default App;
 
 /**
 import { db } from './frontend/firebase/firebase';
-import {
-  collection,
-  getDocs
-} from 'firebase/firestore';
-
-const collectionName = 'wishlist';
+const collectionName = 'quizCollection';
 const docRef = collection(db, collectionName);
 import {
   collection,
   doc,
+  getDoc,
   getDocs,
   addDoc,
   deleteDoc,
@@ -59,6 +58,12 @@ useEffect(() => {
       console.log(dataList);
     })()
 })
+
+
+  (async function () {
+      const docSnap = await getDoc(docRef);
+      console.log("Document data:", docSnap.data());
+  })()
 
 const getAddress = async () => {
     const data = await getDocs(docRef);

@@ -1,10 +1,6 @@
 import './modal.css';
 import { FC } from 'react';
-
-interface SignOutModalProps {
-  setSignoutModal: Function,
-  handleDispatch: Function
-}
+import { SignOutModalProps } from '../../utility';
 
 export const SignoutModal: FC<SignOutModalProps> = ({ setSignoutModal, handleDispatch }) => {
   const handleSignoutFunction = () => {
