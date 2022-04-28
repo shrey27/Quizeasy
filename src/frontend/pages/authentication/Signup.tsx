@@ -2,9 +2,8 @@ import './authentication.css';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SIGNIN, HOMEPAGE } from '../../routes';
-import { regexArray } from '../../utility/constants';
+import { regexArray, useAppDispatch } from '../../utility';
 import { signUpHandler } from '../../service/userActions';
-import { useAppDispatch } from '../../utility/hooks';
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);

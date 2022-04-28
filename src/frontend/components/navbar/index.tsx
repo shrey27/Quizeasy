@@ -2,7 +2,7 @@ import './navbar.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { LANDING, SIGNIN } from '../../routes';
 import { useTheme } from '../../context';
-import { useAppSelector, useAppDispatch } from '../../utility/hooks';
+import { useAppSelector, useAppDispatch } from '../../utility';
 import { signOutHandler } from '../../service/userActions';
 import { SignoutModal } from '../modal/SignoutModal';
 import { useState } from 'react';

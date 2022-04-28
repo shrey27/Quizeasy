@@ -3,8 +3,7 @@ import { useState, Fragment } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SIGNUP, HOMEPAGE } from '../../routes';
 import { signInHandler } from '../../service/userActions';
-import { useAppDispatch } from '../../utility/hooks';
-import { regexArray } from '../../utility/constants';
+import { useAppDispatch, regexArray } from '../../utility';
 
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);

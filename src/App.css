@@ -33,13 +33,16 @@
   color: var(--text);
 }
 
+html {
+  font-size: 88%;
+}
+
 .App {
   background-color: var(--background);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 80%;
-  height: 100vh;
+  height: 105vh;
   transition: all 200ms;
 }
 
@@ -129,7 +132,7 @@
 .title,
 .subtitle {
   color: var(--white--off);
-  margin: 2rem 0;
+  margin: 0.5rem 0;
 }
 .subtitle {
   color: var(--code-span);
@@ -140,7 +143,7 @@
   align-items: flex-start;
   justify-content: center;
   gap: 1rem;
-  margin: 1rem;
+  margin: 0.75rem 1rem;
 }
 .card {
   border: none;
