@@ -3,7 +3,8 @@ import { useState, Fragment } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SIGNUP, HOMEPAGE } from '../../routes';
 import { signInHandler } from '../../service/userActions';
-import { useAppDispatch, regexArray } from '../../utility';
+import { useAppDispatch, regexArray, useAppSelector } from '../../utility';
+import { Loader } from '../../components';
 
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,6 +14,7 @@ export default function Signin() {
   const [error, setError] = useState(false)
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const loader = useAppSelector(state => state.users.loader);
 
   const validateFields = () => {
     const { email, password } = emailDetails;
@@ -39,7 +41,7 @@ export default function Signin() {
 
   return (
     <Fragment>
-      < div className='card authentication shdw' >
+      {loader ? <Loader /> : < div className='card authentication shdw' >
         {error && (
           <h1 className='alert text cen md sb'>Enter the details in proper format</h1>
         )}
@@ -106,7 +108,7 @@ export default function Signin() {
             Sign Up
           </Link>
         </div>
-      </div >
+      </div >}
     </Fragment >
   );
 }

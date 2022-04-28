@@ -8,6 +8,7 @@ import {
     doc,
     setDoc
 } from 'firebase/firestore';
+import { ToastMessage } from '../components';
 
 export const signInHandler = (email: string, password: string, navigate: Function, pathname: string) => {
     return async (dispatch: any) => {
@@ -23,14 +24,16 @@ export const signInHandler = (email: string, password: string, navigate: Functio
             dispatch(userActions.toggleLoader(false));
             localStorage.setItem("authUser", JSON.stringify(docSnap.data()));
             localStorage.setItem("authToken", JSON.stringify(accessToken));
-            navigate(pathname);
+            navigate(pathname);       
         }
         try {
             sendUserDetails();
+            ToastMessage('Sign In was Successful', 'success');
         }
         catch (err) {
             console.log(err);
             dispatch(userActions.toggleLoader(false));
+            ToastMessage('Sign In failed! Try Again Later', 'error');
         };
     };
 }
@@ -56,6 +59,7 @@ export const signUpHandler = (username: string, email: string, password: string,
             localStorage.setItem("authToken", JSON.stringify(accessToken));
             dispatch(userActions.toggleLoader(false));
             navigate(pathname);
+            ToastMessage('Sign Up was Successful', 'success');
         };
         try {
             sendUserDetails();
@@ -63,6 +67,7 @@ export const signUpHandler = (username: string, email: string, password: string,
         catch (error) {
             console.log(error);
             dispatch(userActions.toggleLoader(false));
+            ToastMessage('Use different credentials or Try Again Later', 'error');
         }
     };
 };
