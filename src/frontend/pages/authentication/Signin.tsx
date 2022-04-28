@@ -5,6 +5,7 @@ import { SIGNUP, HOMEPAGE } from '../../routes';
 import { signInHandler } from '../../service/userActions';
 import { useAppDispatch, regexArray, useAppSelector } from '../../utility';
 import { Loader } from '../../components';
+import { useTheme } from '../../context';
 
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,6 +16,7 @@ export default function Signin() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const loader = useAppSelector(state => state.users.loader);
+  const { theme } = useTheme();
 
   const validateFields = () => {
     const { email, password } = emailDetails;
@@ -35,7 +37,7 @@ export default function Signin() {
     e.preventDefault();
     const { email, password } = emailDetails;
     if (validateFields()) {
-      dispatch(signInHandler(email, password, navigate, HOMEPAGE));
+      dispatch(signInHandler(email, password, navigate, HOMEPAGE, theme === 'dark' ? 'dark' : 'light'));
     }
   };
 

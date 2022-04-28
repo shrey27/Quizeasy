@@ -5,6 +5,8 @@ import { Navbar } from './frontend/components';
 import { availableRoutes } from './frontend/routes';
 import { useTheme } from './frontend/context';
 import { userActions } from './frontend/store/userSlice';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { theme } = useTheme();
@@ -23,6 +25,7 @@ function App() {
     <div className="App" app-theme={theme}>
       <Navbar />
       {availableRoutes}
+      <ToastContainer style={{ fontWeight: '500', fontSize: '1.15rem' }} />
     </div>
   );
 }

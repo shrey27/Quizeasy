@@ -10,7 +10,7 @@ import {
 } from 'firebase/firestore';
 import { ToastMessage } from '../components';
 
-export const signInHandler = (email: string, password: string, navigate: Function, pathname: string) => {
+export const signInHandler = (email: string, password: string, navigate: Function, pathname: string, theme: String) => {
     return async (dispatch: any) => {
         dispatch(userActions.toggleLoader(true));
         const sendUserDetails = async () => {
@@ -24,21 +24,21 @@ export const signInHandler = (email: string, password: string, navigate: Functio
             dispatch(userActions.toggleLoader(false));
             localStorage.setItem("authUser", JSON.stringify(docSnap.data()));
             localStorage.setItem("authToken", JSON.stringify(accessToken));
-            navigate(pathname);       
         }
         try {
             sendUserDetails();
-            ToastMessage('Sign In was Successful', 'success');
+            ToastMessage('Sign In was Successful', 'success', theme);
+            navigate(pathname);
         }
         catch (err) {
             console.log(err);
             dispatch(userActions.toggleLoader(false));
-            ToastMessage('Sign In failed! Try Again Later', 'error');
+            ToastMessage('Sign In failed! Try Again Later', 'error', theme);
         };
     };
 }
 
-export const signUpHandler = (username: string, email: string, password: string, navigate: Function, pathname: string) => {
+export const signUpHandler = (username: string, email: string, password: string, navigate: Function, pathname: string, theme: String) => {
     return async (dispatch: any) => {
         dispatch(userActions.toggleLoader(true));
         const sendUserDetails = async () => {
@@ -58,16 +58,16 @@ export const signUpHandler = (username: string, email: string, password: string,
             localStorage.setItem("authUser", JSON.stringify(userObj));
             localStorage.setItem("authToken", JSON.stringify(accessToken));
             dispatch(userActions.toggleLoader(false));
-            navigate(pathname);
-            ToastMessage('Sign Up was Successful', 'success');
         };
         try {
             sendUserDetails();
+            navigate(pathname);
+            ToastMessage('Sign Up was Successful', 'success', theme);
         }
         catch (error) {
             console.log(error);
             dispatch(userActions.toggleLoader(false));
-            ToastMessage('Use different credentials or Try Again Later', 'error');
+            ToastMessage('Use different credentials or Try Again Later', 'error', theme);
         }
     };
 };
