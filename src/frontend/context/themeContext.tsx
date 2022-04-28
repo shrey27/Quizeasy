@@ -5,10 +5,10 @@ type ThemeObj = {
   theme: String,
   switchTheme: () => void;
 }
-const ThemeContext = createContext<ThemeObj>({ theme: 'light', switchTheme: () => { } });
+const ThemeContext = createContext<ThemeObj>({ theme: 'dark', switchTheme: () => { } });
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
 
   const switchTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';

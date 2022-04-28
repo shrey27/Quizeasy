@@ -17,15 +17,15 @@
   --navbar--font: 'Allerta Stencil', sans-serif;
 }
 
-[app-theme='dark'] {
+[app-theme='light'] {
   --background: rgb(195, 195, 195);
   --white--off: rgb(243, 243, 243);
 }
-[app-theme='dark'] .title {
+[app-theme='light'] .title {
   --white--off: #1f2839;
 }
 
-[app-theme='dark'] .subtitle {
+[app-theme='light'] .subtitle {
   --code-span: #1f2839;
 }
 /* Colors */
@@ -35,6 +35,12 @@
 
 html {
   font-size: 88%;
+}
+body {
+  background-color: rgb(195, 195, 195);
+}
+[app-theme='dark'] body {
+  background-color: #1f2839;
 }
 
 .App {
