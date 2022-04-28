@@ -56,7 +56,7 @@ useEffect(() => {
     })()
 })
 
-const docRef = doc(db, collectionName, 'books');
+
   (async function () {
       const docSnap = await getDoc(docRef);
       console.log("Document data:", docSnap.data());
