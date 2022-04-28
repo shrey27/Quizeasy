@@ -31,12 +31,7 @@ export default App;
 
 /**
 import { db } from './frontend/firebase/firebase';
-import {
-  collection,
-  getDocs
-} from 'firebase/firestore';
-
-const collectionName = 'wishlist';
+const collectionName = 'quizCollection';
 const docRef = collection(db, collectionName);
 import {
   collection,
