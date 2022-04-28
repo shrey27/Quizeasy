@@ -4,33 +4,36 @@ import { auth } from '../firebase/firebase';
 import { getAuth, signOut } from "firebase/auth";
 import { db, userCollection } from '../firebase/firebase';
 import {
-    collection,
-    addDoc
+    getDoc,
+    doc,
+    setDoc
 } from 'firebase/firestore';
-const docRef = collection(db, userCollection);
 
 export const signInHandler = (email: string, password: string, navigate: Function, pathname: string) => {
     return async (dispatch: any) => {
         dispatch(userActions.toggleLoader(true));
         const sendUserDetails = async () => {
-            signInWithEmailAndPassword(auth, email, password)
-                .then((response) => {
-                    const resUser: any = response?.user;
-                    dispatch(userActions.getToken(resUser?.accessToken))
-                    dispatch(userActions.getUser({ uid: resUser.uid }))
-                    dispatch(userActions.toggleLoader(false));
-                    localStorage.setItem("authUser", JSON.stringify({ uid: resUser.uid }));
-                    localStorage.setItem("authToken", JSON.stringify(resUser?.accessToken));
-                    navigate(pathname);
-                })
-                .catch(err => {
-                    console.log(err);
-                    dispatch(userActions.toggleLoader(false));
-                })
+            const response = await signInWithEmailAndPassword(auth, email, password)
+            const resUser: any = await response?.user;
+            const { accessToken, uid } = resUser;
+            const docRef = doc(db, userCollection, uid);
+            const docSnap = await getDoc(docRef);
+            dispatch(userActions.getToken(accessToken))
+            dispatch(userActions.getUser(docSnap.data()))
+            dispatch(userActions.toggleLoader(false));
+            localStorage.setItem("authUser", JSON.stringify(docSnap.data()));
+            localStorage.setItem("authToken", JSON.stringify(accessToken));
+            navigate(pathname);
+        }
+        try {
+            sendUserDetails();
+        }
+        catch (err) {
+            console.log(err);
+            dispatch(userActions.toggleLoader(false));
         };
-        sendUserDetails();
     };
-};
+}
 
 export const signUpHandler = (username: string, email: string, password: string, navigate: Function, pathname: string) => {
     return async (dispatch: any) => {
@@ -46,7 +49,7 @@ export const signUpHandler = (username: string, email: string, password: string,
                 quiz: [],
                 score: 0
             }
-            await addDoc(docRef, userObj)
+            await setDoc(doc(db, userCollection, uid), userObj);
             dispatch(userActions.getToken(accessToken))
             dispatch(userActions.getUser(userObj))
             localStorage.setItem("authUser", JSON.stringify(userObj));
