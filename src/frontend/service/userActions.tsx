@@ -29,10 +29,16 @@ export const signInHandler = (email: string, password: string, navigate: Functio
                 ToastMessage('Sign In was Successful', 'success', theme);
                 navigate(pathname);
             }
-            catch (err) {
-                console.log(err);
-                dispatch(userActions.toggleLoader(false));
-                ToastMessage('Sign In failed! Try Again Later', 'error', theme);
+            catch (error: any) {
+                if (error.code === 'Missing or insufficient permission') {
+                    dispatch(userActions.toggleLoader(false));
+                    ToastMessage('Try again later', 'error', theme);
+                }
+                else {
+                    console.log(error);
+                    dispatch(userActions.toggleLoader(false));
+                    ToastMessage('Sign In failed! Try Again Later', 'error', theme);
+                }
             };
         }
         sendUserDetails();
@@ -68,6 +74,10 @@ export const signUpHandler = (username: string, email: string, password: string,
                     case 'auth/email-already-in-use':
                         dispatch(userActions.toggleLoader(false));
                         ToastMessage('Email Id is already registered', 'error', theme);
+                        break;
+                    case 'Missing or insufficient permission':
+                        dispatch(userActions.toggleLoader(false));
+                        ToastMessage('Try again later', 'error', theme);
                         break;
                 }
             }
