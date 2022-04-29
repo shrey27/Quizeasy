@@ -1,13 +1,24 @@
 import './category.css';
 import { Fragment } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useCategoryId, ElementObject } from '../../utility';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useCategoryId, ElementObject, useAppSelector, useAppDispatch } from '../../utility';
 import { Loader } from '../../components';
-import { QUIZ } from '../../routes';
+import { QUIZ, RESULT } from '../../routes';
+import { userActions } from '../../store/userSlice';
 
 export default function Category() {
+    const navigate = useNavigate();
     const { categoryId } = useParams();
     const quizData = useCategoryId(`${categoryId}`);
+    const userInfo = useAppSelector(state => state.users.userInfo);
+    const dispatch = useAppDispatch();
+    const { quiz } = userInfo
+    
+    const handleAttemptQuizUpdate = (id: String) => {
+        const quizObject = quiz.find((item: any) => item.quizId === id);
+        dispatch(userActions.getAttemptedQuiz(quizObject))
+        navigate(RESULT);
+    }
 
     return <Fragment>
         {!quizData.length ? <Loader /> :
@@ -28,7 +39,10 @@ export default function Category() {
                                 <p className="card__content">
                                     {element.description}
                                 </p>
-                                <Link to={QUIZ + `/${element.id}`} className="btn btn--dark">Play Now</Link>
+                                {quiz?.some((item: any) => item.quizId === element.id)
+                                    ? <button className="btn btn--dark" onClick={() => handleAttemptQuizUpdate(element.id)}>Check Result</button>
+                                    : <Link to={QUIZ + `/${element.id}`} className="btn btn--dark">
+                                        Play Now</Link>}
                             </section>
                         </div>
                     })}

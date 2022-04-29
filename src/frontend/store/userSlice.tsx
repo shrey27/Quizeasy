@@ -11,6 +11,7 @@ const initialState = {
     token: '',
     categoryQuiz: [],
     attemptedQuiz: {
+        quizId: '',
         title: '',
         questions: [],
         answers: [],

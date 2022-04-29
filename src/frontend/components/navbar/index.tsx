@@ -1,5 +1,5 @@
 import './navbar.css';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { HOMEPAGE, LANDING, SIGNIN, LEADERBOARD } from '../../routes';
 import { useTheme } from '../../context';
 import { useAppSelector, useAppDispatch } from '../../utility';
@@ -8,7 +8,6 @@ import { SignoutModal } from '../modal/SignoutModal';
 import { useState } from 'react';
 
 export function Navbar() {
-    const { pathname } = useLocation();
     const navigate = useNavigate();
     const [signoutModal, setSignoutModal] = useState(false);
     const { theme, switchTheme } = useTheme();
