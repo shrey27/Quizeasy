@@ -1,11 +1,11 @@
 import './quiz.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 // import { useParams } from 'react-router-dom'
 // import { useQuizId } from '../../utility';
 import { Question } from './Question';
-import { sampleQuizObject } from '../../utility';
 import { useNavigate } from 'react-router-dom';
 import { HOMEPAGE } from '../../routes';
+import { Rules } from '../rules';
 
 // const defaultState = {
 //     title: '',
@@ -13,13 +13,19 @@ import { HOMEPAGE } from '../../routes';
 //     answers: [],
 //     options: []
 // }
+const sampleQuizObject = {
+    title: 'Lorem Ipsum',
+    questions: ['Lorem ipsum 1', 'Lorem ipsum 2', 'Lorem ipsum 3', 'Lorem ipsum 4', 'Lorem ipsum 5'],
+    answers: ['one', 'two', 'three', 'one', 'two'],
+    options: [{ one: 'one', two: 'two', three: 'three' }, { one: 'one', two: 'two', three: 'three' }, { one: 'one', two: 'two', three: 'three' }, { one: 'one', two: 'two', three: 'three' }, { one: 'one', two: 'two', three: 'three' }]
+}
 const TIME = 35;
 
 export default function Quiz() {
     // const { quizId } = useParams();
     // const quizObject = useQuizId(`${quizId}`) ?? defaultState;
     const navigate = useNavigate();
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(-1);
     const [time, setTime] = useState(TIME);
     const [attempts, setAttempts] = useState(new Array(sampleQuizObject.questions.length).fill(undefined))
 
@@ -43,26 +49,28 @@ export default function Quiz() {
             setIndex(i => i + 1);
         }
         else {
-            
+
             navigate(HOMEPAGE, { state: { attempts } });
         }
     }
 
-    return <div>
-        <main className="quiz__body"><h1 className="title xl sb cen sm-s">{sampleQuizObject.title}</h1>
-            <div className="flex-ct-sb subheading">
-                <span className="score md">Questions: {index + 1}/{sampleQuizObject.questions.length}</span>
-                <span className="score md">
-                    Time Left: 00:{time < 10 ? `0${time}` : time}
-                </span>
-            </div>
-            <Question
-                question={sampleQuizObject.questions[index]}
-                options={sampleQuizObject.options[index]}
-                attempts={attempts}
-                setAttempts={setAttempts}
-                index={index}
-                handleOnSubmit={handleOnSubmit} />
-        </main>
-    </div>
+    return <>
+        {index < 0 ? <Rules handleOnSubmit={handleOnSubmit} /> :
+            <div className="quiz__body">
+                <h1 className="title xl sb cen sm-s">{sampleQuizObject.title}</h1>
+                <div className="flex-ct-sb subheading">
+                    <span className="score md">Questions : {index + 1}/{sampleQuizObject.questions.length}</span>
+                    <span className="score md">
+                        Time Left : 00:{time < 10 ? `0${time}` : time}
+                    </span>
+                </div>
+                <Question
+                    question={sampleQuizObject.questions[index]}
+                    options={sampleQuizObject.options[index]}
+                    attempts={attempts}
+                    setAttempts={setAttempts}
+                    index={index}
+                    handleOnSubmit={handleOnSubmit} />
+            </div>}
+    </>
 }

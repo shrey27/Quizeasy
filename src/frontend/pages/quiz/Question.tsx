@@ -1,19 +1,6 @@
 import './quiz.css';
 import React from 'react';
-// import { QuestionProps } from '../../utility';
-export interface OptionsObject {
-    one: String,
-    two: String,
-    three: String
-}
-export interface QuestionProps {
-    question: String,
-    options: OptionsObject,
-    attempts: Array<String>,
-    setAttempts: Function,
-    index: Number,
-    handleOnSubmit: Function
-}
+import { QuestionProps } from '../../utility';
 
 export const Question: React.FC<QuestionProps> = (
     { question, options, attempts, setAttempts, index, handleOnSubmit }) => {
@@ -35,7 +22,7 @@ export const Question: React.FC<QuestionProps> = (
     }
 
     return <div>
-        <div className="rules sm-s">
+        <div className="sm-s">
             <h1 className="question--title lg reg sm-s cen">
                 {question}
             </h1>
