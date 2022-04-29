@@ -15,6 +15,7 @@ export const SIGNIN = '/signin';
 export const CATEGORY = '/category';
 export const QUIZ = '/quiz';
 export const RESULT = '/result';
+export const LEADERBOARD = '/leaderboard';
 export const NOTFOUND = '*';
 
 export const availableRoutes = (

@@ -22,10 +22,31 @@
 .menu button {
   margin: 0 0.25rem;
 }
-
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.btn--navbar {
+  background-color: transparent;
+  color: var(--text);
+  border: none;
+  font-size: 1.15rem;
+  padding: 0;
+  margin: 0;
+}
+.logout__mobile {
+  display: none;
+}
 @media screen and (min-width: 768px) {
   .navbar {
     grid-template-columns: 1fr 1fr 1fr;
     grid-area: 'begin middle end';
+  }
+  .btn--navbar {
+    font-size: 1.5rem;
+  }
+  .logout__mobile {
+    display: inline;
   }
 }
