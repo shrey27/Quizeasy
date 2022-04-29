@@ -65,6 +65,7 @@ export default function Quiz() {
                 score: userInfo.score + score,
                 quiz: [...userInfo.quiz, { ...quizObj, quizId }]
             }
+            console.log(newInfo);
             dispatch(updateUserhandler(userInfo.uid, newInfo))
             navigate(RESULT);
         }
@@ -76,7 +77,7 @@ export default function Quiz() {
             questions: quizObject.questions,
             answers: quizObject.answers,
             options: quizObject.options,
-            attempts:[],
+            attempts: [],
             score: 0
         }
         const newInfo = {
