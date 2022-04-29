@@ -1,0 +1,50 @@
+@import '../../../App.css';
+
+.quiz__body {
+  width: 90%;
+  margin: auto;
+}
+.score {
+  color: var(--text);
+  font-weight: 500;
+}
+.question {
+  color: var(--white--off);
+}
+.question--title {
+  color: var(--white--off);
+  font-weight: 500;
+}
+.options_label {
+  display: inline-block;
+  margin: auto;
+  background-color: #4a5568;
+  width: 100%;
+  padding: 1.25rem;
+  font-size: 1.25em;
+  font-weight: 600;
+  text-align: center;
+  margin: 1rem auto;
+  border-radius: 5px;
+}
+.options_label.right__label {
+  background-color: var(--badge-online);
+}
+.options_label.wrong__label {
+  background-color: var(--badge-offline);
+}
+.nav--btn {
+  color: var(--button-primary);
+  margin: 2rem 0;
+}
+.btn--result,
+.btn--result:hover {
+  font-size: 1.15rem;
+  font-weight: 500;
+  padding: 0.75rem;
+}
+@media screen and (min-width: 768px) {
+  .quiz__body {
+    width: 40rem;
+  }
+}

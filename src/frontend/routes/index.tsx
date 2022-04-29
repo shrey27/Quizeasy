@@ -5,6 +5,7 @@ import Homepage from '../pages/homepage';
 import Landing from '../pages/landing';
 import Category from '../pages/category';
 import Quiz from '../pages/quiz';
+import Result from '../pages/result';
 
 // Routes
 export const LANDING = '/';
@@ -13,6 +14,7 @@ export const SIGNUP = '/signup';
 export const SIGNIN = '/signin';
 export const CATEGORY = '/category';
 export const QUIZ = '/quiz';
+export const RESULT = '/result';
 export const NOTFOUND = '*';
 
 export const availableRoutes = (
@@ -23,5 +25,6 @@ export const availableRoutes = (
     <Route path={SIGNIN} element={<Signin />} />
     <Route path={`${CATEGORY}/:categoryId`} element={<Category />} />
     <Route path={`${QUIZ}/:quizId`} element={<Quiz />} />
+    <Route path={RESULT} element={<Result />} />
   </Routes>
 );

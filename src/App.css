@@ -6,7 +6,7 @@
 :root {
   --background: #1f2839;
   --white--off: rgb(243, 243, 243);
-  --text: #1f2839;
+  --text: rgb(238, 160, 15);
   --secondary: #f7cc21;
   --tertiary: rgb(238, 160, 15);
   --tertiary--hover: rgb(223, 154, 27);
@@ -20,6 +20,7 @@
 [app-theme='light'] {
   --background: rgb(195, 195, 195);
   --white--off: rgb(243, 243, 243);
+  --text: #1f2839;
 }
 [app-theme='light'] .title {
   --white--off: #1f2839;
@@ -45,7 +46,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  height: 110vh;
+  min-height: 110vh;
   transition: all 200ms;
 }
 

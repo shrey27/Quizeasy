@@ -11,28 +11,29 @@ export const Rules: React.FC<RulesProps> = ({ handleOnSubmit }) => {
     const handleGoback = () => {
         navigate(-1)
     }
-    return <div><h1 className="title xl sb cen">Rules of the quiz</h1>
+    return <div>
+        <h1 className="title xl sb cen">Rules of the quiz</h1>
         <div className="rules">
             <ul className="stack xs-s">
                 <li className="flex-ct-st shadow xs-s rules__list">
-                    <span className="text sm sb"
+                    <span className="primary sm sb"
                     ><i className="fa-solid fa-circle-chevron-right"></i>All questions are compulsory</span>
                 </li>
                 <li className="flex-ct-st shadow xs-s rules__list">
-                    <span className="text sm sb"
+                    <span className="primary sm sb"
                     ><i className="fa-solid fa-circle-chevron-right"></i>
                         You will have 59 seconds to attempt each question</span>
                 </li>
                 <li className="flex-ct-st shadow xs-s rules__list">
-                    <span className="text sm sb"
+                    <span className="primary sm sb"
                     ><i className="fa-solid fa-circle-chevron-right"></i> You need score above 60 to pass the quiz</span>
                 </li>
                 <li className="flex-ct-st shadow xs-s rules__list">
-                    <span className="text sm sb"
+                    <span className="primary sm sb"
                     ><i className="fa-solid fa-circle-chevron-right"></i> You can attempt a quiz only once</span>
                 </li>
                 <li className="flex-ct-st shadow xs-s rules__list">
-                    <span className="text sm sb"
+                    <span className="primary sm sb"
                     ><i className="fa-solid fa-circle-chevron-right"></i> You can quit a quiz, but you will not be able to attempt it again</span>
                 </li>
             </ul>
@@ -46,5 +47,6 @@ export const Rules: React.FC<RulesProps> = ({ handleOnSubmit }) => {
                     onClick={handleClick}>Start quiz
                 </button>
             </div>
-        </div></div>
+        </div>
+    </div>
 }
