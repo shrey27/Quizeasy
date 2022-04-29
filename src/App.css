@@ -95,6 +95,16 @@ body {
   border: 2px solid var(--tertiary--hover);
   background-color: var(--tertiary--hover);
 }
+.btn--disabled,
+.btn--disabled:hover {
+  color: var(--white);
+  background-color: var(--black);
+  border: 2px solid var(--black);
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  pointer-events: none;
+}
 .btn--cancel,
 .btn--cancel--solid,
 .btn--cancel--solid:hover {

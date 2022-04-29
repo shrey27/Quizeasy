@@ -1,32 +1,84 @@
 import './quiz.css';
 import React from 'react';
-import { QuestionProps } from '../../utility';
+// import { QuestionProps } from '../../utility';
+export interface OptionsObject {
+    one: String,
+    two: String,
+    three: String
+}
+export interface QuestionProps {
+    question: String,
+    options: OptionsObject,
+    attempts: Array<String>,
+    setAttempts: Function,
+    index: Number,
+    handleOnSubmit: Function
+}
 
-export const Question: React.FC<QuestionProps> = ({ question, options }) => {
+export const Question: React.FC<QuestionProps> = (
+    { question, options, attempts, setAttempts, index, handleOnSubmit }) => {
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        handleOnSubmit();
+    }
+
+    const handleOnReset = (e: any) => {
+        e.preventDefault();
+    }
+
+    const handleChange = (e: any) => {
+        e.preventDefault();
+        let temp = [...attempts];
+        temp[Number(index)] = e.target.id;
+        setAttempts(temp);
+    }
+
     return <div>
         <div className="rules sm-s">
             <h1 className="question--title lg reg sm-s cen">
                 {question}
             </h1>
-            <ul className="stack">
-                <li className="question">
-                    <input name="director" className="input__radio" type="radio" id="cn" />
-                    <label className="input__label" htmlFor="cn">{options.one}</label>
-                </li>
-                <li className="question">
-                    <input name="director" className="input__radio" type="radio" id="ss" />
-                    <label className="input__label" htmlFor="ss">{options.two}</label>
-                </li>
-                <li className="question">
-                    <input name="director" className="input__radio" type="radio" id="qt" />
-                    <label className="input__label" htmlFor="qt">{options.three}</label>
-                </li>
-            </ul>
-            <div className="nav--btn flex-ct-sb">
-                <i className="fa-solid fa-angles-left xl"></i>
-                <span className="btn btn--cancel--solid md sb show--modal">End Quiz</span>
-                <i className="fa-solid fa-angles-right xl fl-rt"></i>
-            </div>
+            <form onSubmit={handleSubmit} onReset={handleOnReset}>
+                <ul className="stack">
+                    <li className="question">
+                        <input name="quizQuestion"
+                            className="input__radio"
+                            type="radio"
+                            id="one"
+                            checked={attempts[Number(index)] === 'one' ? true : false}
+                            onChange={handleChange} />
+                        <label className="input__label" htmlFor="one">{options.one}</label>
+                    </li>
+                    <li className="question">
+                        <input name="quizQuestion"
+                            className="input__radio"
+                            type="radio"
+                            id="two"
+                            checked={attempts[Number(index)] === 'two' ? true : false}
+                            onChange={handleChange} />
+                        <label className="input__label" htmlFor="two">{options.two}</label>
+                    </li>
+                    <li className="question">
+                        <input name="quizQuestion"
+                            className="input__radio"
+                            type="radio"
+                            id="three"
+                            checked={attempts[Number(index)] === 'three' ? true : false}
+                            onChange={handleChange} />
+                        <label className="input__label" htmlFor="three">{options.three}</label>
+                    </li>
+                </ul>
+                <div className="nav--btn flex-ct-sb">
+                    <button type='reset'
+                        className="btn btn--cancel--solid btn--question md sb">End Quit</button>
+                    <button type='submit'
+                        className={!attempts[Number(index)] ?
+                            "btn btn--disabled btn--question md sb" :
+                            "btn btn--auth--solid btn--question md sb"}
+                        disabled={!attempts[Number(index)]}>Next Question</button>
+                </div>
+            </form>
         </div>
     </div>
 }
