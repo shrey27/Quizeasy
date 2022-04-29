@@ -5,11 +5,11 @@ const initialState = {
     token: '',
     categoryQuiz: [],
     attemptedQuiz: {
-        title: 'Lorem Ipsum',
-        questions: ['Lorem ipsum 1', 'Lorem ipsum 2', 'Lorem ipsum 3', 'Lorem ipsum 4', 'Lorem ipsum 5'],
-        answers: ['one', 'two', 'three', 'one', 'two'],
-        options: [{ one: 'one1', two: 'two1', three: 'three1' }, { one: 'one2', two: 'two2', three: 'three2' }, { one: 'one3', two: 'two3', three: 'three3' }, { one: 'one4', two: 'two4', three: 'three4' }, { one: 'one5', two: 'two5', three: 'three5' }],
-        attempts: ['one', 'two', 'one', 'three', 'two'],
+        title: '',
+        questions: [],
+        answers: [],
+        options: [{ one: '', two: '', three: '' }],
+        attempts: [],
         score: 0
     },
     loader: false

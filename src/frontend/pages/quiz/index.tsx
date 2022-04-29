@@ -46,9 +46,7 @@ export default function Quiz() {
     }, [time, index]);
 
     const calculateScore = () => {
-        return quizObject
-        .answers
-        .reduce((acc, curr, index) => curr === attempts[index] ? acc + 20 : acc, 0)
+        return quizObject.answers.reduce((acc, curr, index) => curr === attempts[index] ? acc + 20 : acc, 0)
     }
 
     const handleOnSubmit = () => {
@@ -76,7 +74,7 @@ export default function Quiz() {
                 <h1 className="title xl sb cen sm-s">{quizObject.title}</h1>
                 <div className="flex-ct-sb subheading">
                     <span className="score md">Questions : {index + 1}/{quizObject.questions.length}</span>
-                    <span className="score md">
+                    <span className="score md fl-rt">
                         Time Left : 00:{time < 10 ? `0${time}` : time}
                     </span>
                 </div>

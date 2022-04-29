@@ -8,8 +8,9 @@
 .question {
   color: var(--white);
 }
-.question--title {
-  color: var(--badge-away);
+.question-title {
+  color: var(--white--text);
+  font-weight: 500;
 }
 .input__radio {
   display: none;
@@ -19,6 +20,7 @@
 .input__label {
   display: inline-block;
   margin: auto;
+  color: var(--white--off);
   background-color: #4a5568;
   width: 100%;
   padding: 1.05rem;

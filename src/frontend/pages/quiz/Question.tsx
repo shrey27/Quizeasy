@@ -23,7 +23,7 @@ export const Question: React.FC<QuestionProps> = (
 
     return <div>
         <div className="sm-s">
-            <h1 className="question--title lg reg sm-s cen">
+            <h1 className="question-title md reg xs-s cen">
                 {question}
             </h1>
             <form onSubmit={handleSubmit} onReset={handleOnReset}>

@@ -1,14 +1,21 @@
 import './result.css';
 import { useAppSelector } from '../../utility';
+import { HOMEPAGE } from '../../routes';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function Result() {
-
+    const navigate = useNavigate();
     const attemptedQuiz = useAppSelector(state => state.users.attemptedQuiz);
-
+    useEffect(() => {
+        if (!attemptedQuiz.title.length) {
+            navigate(HOMEPAGE, { replace: true })
+        }
+    }, [navigate, attemptedQuiz])
     return <div>
         <div className="quiz__body sm-s">
             <h1 className="title xl sb cen sm-s">RESULT</h1>
-            <h1 className="title md sb cen sm-s">{attemptedQuiz.title}</h1>
+            <h1 className="title lg sb cen sm-s">{attemptedQuiz.title}</h1>
             <div className="flex-ct-sb subheading">
                 <span className="score md">
                     {`Questions : ${attemptedQuiz.questions.length}/${attemptedQuiz.questions.length}`}
@@ -56,9 +63,9 @@ export default function Result() {
                 </ul>
             </div>
             <div className="nav--btn flex-ct-ct">
-                <button className="btn btn--cancel--solid btn--result">
+                <Link to={HOMEPAGE} className="btn btn--cancel--solid btn--result">
                     <i className="fa-solid fa-house"></i> Go To Homepage
-                </button>
+                </Link>
             </div>
         </div>
     </div>

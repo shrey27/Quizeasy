@@ -12,7 +12,7 @@
   color: var(--white--off);
 }
 .question--title {
-  color: var(--white--off);
+  color: var(--text);
   font-weight: 500;
 }
 .options_label {
