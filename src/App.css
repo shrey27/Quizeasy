@@ -6,7 +6,9 @@
 :root {
   --background: #1f2839;
   --white--off: rgb(243, 243, 243);
-  --text: #1f2839;
+  --text: #1b2333;
+  --score--text: rgb(238, 160, 15);
+  --white--text: rgb(243, 243, 243);
   --secondary: #f7cc21;
   --tertiary: rgb(238, 160, 15);
   --tertiary--hover: rgb(223, 154, 27);
@@ -20,17 +22,14 @@
 [app-theme='light'] {
   --background: rgb(195, 195, 195);
   --white--off: rgb(243, 243, 243);
+  --white--text: #1f2839;
+  --score--text: #1f2839;
 }
 [app-theme='light'] .title {
   --white--off: #1f2839;
 }
-
 [app-theme='light'] .subtitle {
   --code-span: #1f2839;
-}
-/* Colors */
-.text {
-  color: var(--text);
 }
 
 html {
@@ -45,8 +44,13 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  height: 100vh;
+  min-height: 115vh;
   transition: all 200ms;
+}
+
+/* Colors */
+.text {
+  color: var(--text);
 }
 
 /* Scrollbar */
@@ -94,6 +98,16 @@ body {
 .btn--auth--solid:hover {
   border: 2px solid var(--tertiary--hover);
   background-color: var(--tertiary--hover);
+}
+.btn--disabled,
+.btn--disabled:hover {
+  color: var(--white);
+  background-color: var(--black);
+  border: 2px solid var(--black);
+  border-radius: 4px;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  pointer-events: none;
 }
 .btn--cancel,
 .btn--cancel--solid,

@@ -6,7 +6,8 @@ import { db, userCollection } from '../firebase/firebase';
 import {
     getDoc,
     doc,
-    setDoc
+    setDoc,
+    updateDoc
 } from 'firebase/firestore';
 import { ToastMessage } from '../components';
 
@@ -28,10 +29,16 @@ export const signInHandler = (email: string, password: string, navigate: Functio
                 ToastMessage('Sign In was Successful', 'success', theme);
                 navigate(pathname);
             }
-            catch (err) {
-                console.log(err);
-                dispatch(userActions.toggleLoader(false));
-                ToastMessage('Sign In failed! Try Again Later', 'error', theme);
+            catch (error: any) {
+                if (error.code === 'Missing or insufficient permission') {
+                    dispatch(userActions.toggleLoader(false));
+                    ToastMessage('Try again later', 'error', theme);
+                }
+                else {
+                    console.log(error);
+                    dispatch(userActions.toggleLoader(false));
+                    ToastMessage('Sign In failed! Try Again Later', 'error', theme);
+                }
             };
         }
         sendUserDetails();
@@ -68,12 +75,37 @@ export const signUpHandler = (username: string, email: string, password: string,
                         dispatch(userActions.toggleLoader(false));
                         ToastMessage('Email Id is already registered', 'error', theme);
                         break;
+                    case 'Missing or insufficient permission':
+                        dispatch(userActions.toggleLoader(false));
+                        ToastMessage('Try again later', 'error', theme);
+                        break;
                 }
             }
         };
         sendUserDetails();
     };
 };
+
+export const updateUserhandler = (userId: string, payload: any) => {
+    return async (dispatch: any) => {
+        dispatch(userActions.toggleLoader(true));
+        const sendUserDetails = async () => {
+            try {
+                const userDoc = doc(db, userCollection, userId);
+                await updateDoc(userDoc, payload);
+                const docRef = doc(db, userCollection, userId);
+                const docSnap = await getDoc(docRef);
+                dispatch(userActions.getUser(docSnap.data()))
+                localStorage.setItem("authUser", JSON.stringify(docSnap.data()));
+                dispatch(userActions.toggleLoader(false));
+            }
+            catch (error: any) {
+                console.log(error.code);
+            }
+        };
+        sendUserDetails();
+    };
+}
 
 export const signOutHandler = (navigate: Function, pathname: string) => {
     return async (dispatch: any) => {

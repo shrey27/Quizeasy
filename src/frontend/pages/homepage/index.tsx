@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { CATEGORY } from '../../routes';
 
 export default function Homepage() {
+
     return <div>
         <h1 className="subtitle lg sb cen sm-s">CHOOSE A CATEGORY</h1>
         <div className="category">
