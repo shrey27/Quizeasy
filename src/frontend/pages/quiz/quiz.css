@@ -6,7 +6,7 @@
 }
 .score,
 .question {
-  color: var(--white);
+  color: var(--score--text);
 }
 .question-title {
   color: var(--white--text);

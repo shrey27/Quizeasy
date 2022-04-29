@@ -6,7 +6,8 @@ import { db, userCollection } from '../firebase/firebase';
 import {
     getDoc,
     doc,
-    setDoc
+    setDoc,
+    updateDoc
 } from 'firebase/firestore';
 import { ToastMessage } from '../components';
 
@@ -74,6 +75,27 @@ export const signUpHandler = (username: string, email: string, password: string,
         sendUserDetails();
     };
 };
+
+export const updateUserhandler = (userId: string, payload: any) => {
+    return async (dispatch: any) => {
+        dispatch(userActions.toggleLoader(true));
+        const sendUserDetails = async () => {
+            try {
+                const userDoc = doc(db, userCollection, userId);
+                await updateDoc(userDoc, payload);
+                const docRef = doc(db, userCollection, userId);
+                const docSnap = await getDoc(docRef);
+                dispatch(userActions.getUser(docSnap.data()))
+                localStorage.setItem("authUser", JSON.stringify(docSnap.data()));
+                dispatch(userActions.toggleLoader(false));
+            }
+            catch (error: any) {
+                console.log(error.code);
+            }
+        };
+        sendUserDetails();
+    };
+}
 
 export const signOutHandler = (navigate: Function, pathname: string) => {
     return async (dispatch: any) => {

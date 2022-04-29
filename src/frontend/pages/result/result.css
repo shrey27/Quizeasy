@@ -5,14 +5,14 @@
   margin: auto;
 }
 .score {
-  color: var(--text);
+  color: var(--score--text);
   font-weight: 500;
 }
 .question {
   color: var(--white--off);
 }
 .question--title {
-  color: var(--text);
+  color: var(--score--text);
   font-weight: 500;
 }
 .options_label {

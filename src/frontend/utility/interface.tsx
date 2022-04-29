@@ -32,5 +32,6 @@ export interface OptionsObject {
     attempts: Array<String>,
     setAttempts: Function,
     index: Number,
-    handleOnSubmit: Function
+    handleOnSubmit: Function,
+    handleOnReset: Function
 }

@@ -22,7 +22,7 @@ export const Rules: React.FC<RulesProps> = ({ handleOnSubmit }) => {
                 <li className="flex-ct-st shadow xs-s rules__list">
                     <span className="primary sm sb"
                     ><i className="fa-solid fa-circle-chevron-right"></i>
-                        You will have 59 seconds to attempt each question</span>
+                        You will have 35 seconds to attempt each question</span>
                 </li>
                 <li className="flex-ct-st shadow xs-s rules__list">
                     <span className="primary sm sb"

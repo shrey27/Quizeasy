@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    userInfo: {},
+    userInfo: {
+        uid: '',
+        email: '',
+        quiz: [],
+        username: '',
+        score: 0
+    },
     token: '',
     categoryQuiz: [],
     attemptedQuiz: {

@@ -6,7 +6,8 @@
 :root {
   --background: #1f2839;
   --white--off: rgb(243, 243, 243);
-  --text: rgb(238, 160, 15);
+  --text: #1b2333;
+  --score--text: rgb(238, 160, 15);
   --white--text: rgb(243, 243, 243);
   --secondary: #f7cc21;
   --tertiary: rgb(238, 160, 15);
@@ -22,7 +23,7 @@
   --background: rgb(195, 195, 195);
   --white--off: rgb(243, 243, 243);
   --white--text: #1f2839;
-  --text: #1f2839;
+  --score--text: #1f2839;
 }
 [app-theme='light'] .title {
   --white--off: #1f2839;

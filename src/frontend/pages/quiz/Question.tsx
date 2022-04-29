@@ -3,15 +3,15 @@ import React from 'react';
 import { QuestionProps } from '../../utility';
 
 export const Question: React.FC<QuestionProps> = (
-    { question, options, attempts, setAttempts, index, handleOnSubmit }) => {
+    { question, options, attempts, setAttempts, index, handleOnSubmit, handleOnReset }) => {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         handleOnSubmit();
     }
 
-    const handleOnReset = (e: any) => {
-        e.preventDefault();
+    const handleReset = () => {
+        handleOnReset();
     }
 
     const handleChange = (e: any) => {
@@ -26,7 +26,7 @@ export const Question: React.FC<QuestionProps> = (
             <h1 className="question-title md reg xs-s cen">
                 {question}
             </h1>
-            <form onSubmit={handleSubmit} onReset={handleOnReset}>
+            <form onSubmit={handleSubmit}>
                 <ul className="stack">
                     <li className="question">
                         <input name="quizQuestion"
@@ -57,8 +57,8 @@ export const Question: React.FC<QuestionProps> = (
                     </li>
                 </ul>
                 <div className="nav--btn flex-ct-sb">
-                    <button type='reset'
-                        className="btn btn--cancel--solid btn--question md sb">End Quit</button>
+                    <button type='button' onClick={handleReset}
+                        className="btn btn--cancel--solid btn--question md sb">End Quiz</button>
                     <button type='submit'
                         className={!attempts[Number(index)] ?
                             "btn btn--disabled btn--question md sb" :

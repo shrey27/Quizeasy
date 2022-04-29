@@ -1,27 +1,21 @@
 import './quiz.css';
 import { useState, useEffect, Fragment } from 'react';
 import { useParams } from 'react-router-dom'
-import { useQuizId } from '../../utility';
+import { useQuizId, useAppDispatch, useAppSelector } from '../../utility';
 import { Question } from './Question';
 import { useNavigate } from 'react-router-dom';
-import { RESULT } from '../../routes';
+import { HOMEPAGE, RESULT } from '../../routes';
 import { Rules } from '../rules';
-import { useAppDispatch } from '../../utility';
 import { userActions } from '../../store/userSlice';
+import { updateUserhandler } from '../../service/userActions';
+
 const defaultState = {
     title: '',
     questions: [],
     answers: [],
     options: []
 }
-// const quizObject = {
-//     title: 'Lorem Ipsum',
-//     questions: ['Lorem ipsum 1', 'Lorem ipsum 2', 'Lorem ipsum 3', 'Lorem ipsum 4', 'Lorem ipsum 5'],
-//     answers: ['one', 'two', 'three', 'one', 'two'],
-//     options: [{ one: 'one', two: 'two', three: 'three' }, { one: 'one', two: 'two', three: 'three' }, { one: 'one', two: 'two', three: 'three' }, { one: 'one', two: 'two', three: 'three' }, { one: 'one', two: 'two', three: 'three' }]
-// }
 const TIME = 35;
-
 export default function Quiz() {
     const { quizId } = useParams();
     const quizObject = useQuizId(`${quizId}`) ?? defaultState;
@@ -30,6 +24,7 @@ export default function Quiz() {
     const [time, setTime] = useState(TIME);
     const [attempts, setAttempts] = useState(new Array(quizObject.questions.length).fill(undefined))
     const dispatch = useAppDispatch();
+    const userInfo = useAppSelector(state => state.users.userInfo);
 
     useEffect(() => {
         let id = setTimeout(() => {
@@ -56,16 +51,40 @@ export default function Quiz() {
         }
         else {
             const score = calculateScore();
-            dispatch(userActions.getAttemptedQuiz({
+            const quizObj = {
                 title: quizObject.title,
                 questions: quizObject.questions,
                 answers: quizObject.answers,
                 options: quizObject.options,
                 attempts,
                 score
-            }))
+            }
+            dispatch(userActions.getAttemptedQuiz(quizObj))
+            const newInfo = {
+                ...userInfo,
+                score: userInfo.score + score,
+                quiz: [...userInfo.quiz, { ...quizObj, quizId }]
+            }
+            dispatch(updateUserhandler(userInfo.uid, newInfo))
             navigate(RESULT);
         }
+    }
+
+    const handleOnReset = () => {
+        const quizObj = {
+            title: quizObject.title,
+            questions: quizObject.questions,
+            answers: quizObject.answers,
+            options: quizObject.options,
+            attempts:[],
+            score: 0
+        }
+        const newInfo = {
+            ...userInfo,
+            quiz: [...userInfo.quiz, { ...quizObj, quizId }]
+        }
+        dispatch(updateUserhandler(userInfo.uid, newInfo))
+        navigate(HOMEPAGE);
     }
 
     return <>
@@ -84,7 +103,8 @@ export default function Quiz() {
                     attempts={attempts}
                     setAttempts={setAttempts}
                     index={index}
-                    handleOnSubmit={handleOnSubmit} />
+                    handleOnSubmit={handleOnSubmit}
+                    handleOnReset={handleOnReset} />
             </div>}
     </>
 }
