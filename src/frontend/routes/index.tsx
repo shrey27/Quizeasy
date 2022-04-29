@@ -6,6 +6,7 @@ import Landing from '../pages/landing';
 import Category from '../pages/category';
 import Quiz from '../pages/quiz';
 import Result from '../pages/result';
+import Leaderboard from '../pages/leaderboard';
 
 // Routes
 export const LANDING = '/';
@@ -27,5 +28,6 @@ export const availableRoutes = (
     <Route path={`${CATEGORY}/:categoryId`} element={<Category />} />
     <Route path={`${QUIZ}/:quizId`} element={<Quiz />} />
     <Route path={RESULT} element={<Result />} />
+    <Route path={LEADERBOARD} element={<Leaderboard />} />
   </Routes>
 );

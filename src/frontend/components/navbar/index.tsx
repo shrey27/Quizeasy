@@ -30,7 +30,7 @@ export function Navbar() {
         <nav className="navbar shadow">
             <section className="begin">
                 <Link to={LANDING}>
-                    <img className="box__image" src='logo.png' alt='logo' />
+                    <img className="box__image" src='https://res.cloudinary.com/apollo27/image/upload/v1651258405/logo_lvwf0l.png' alt='logo' />
                 </Link>
             </section>
             {/* {pathname === '/homepage' && <section className="middle cen sm-s">
