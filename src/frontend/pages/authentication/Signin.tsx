@@ -10,7 +10,7 @@ import { useTheme } from '../../context';
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
   const [emailDetails, setEmailDetails] = useState({
-    email: 'carljones@gmail.com', password: 'carljones1234'
+    email: 'carljamy@gmail.com', password: 'carljamy1234'
   })
   const [error, setError] = useState(false)
   const navigate = useNavigate();

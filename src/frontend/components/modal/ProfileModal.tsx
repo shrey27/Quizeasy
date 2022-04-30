@@ -6,6 +6,7 @@ export const ProfileModal: FC<ProfileModalProps> = ({ setProfileModal, handleDis
 
     const [form, setForm] = useState({ email: '', username: '', password: '', newpassword: '' })
     const [error, setError] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
         setForm((object: any) => ({ ...object, ...modalObject }))
@@ -13,7 +14,6 @@ export const ProfileModal: FC<ProfileModalProps> = ({ setProfileModal, handleDis
 
     const handleSubmit = () => {
         if (form.username !== '' && form.email !== '' && form.password !== '') {
-            setProfileModal(false);
             handleDispatch(form);
         }
         else {
@@ -73,7 +73,7 @@ export const ProfileModal: FC<ProfileModalProps> = ({ setProfileModal, handleDis
                         <div className='input__container'>
                             <input
                                 className='input input__password'
-                                type='password'
+                                type={showPassword ? 'text' : 'password'}
                                 name='old__password'
                                 id='old__password'
                                 autoComplete='off'
@@ -82,6 +82,10 @@ export const ProfileModal: FC<ProfileModalProps> = ({ setProfileModal, handleDis
                                 onChange={(e) => setForm({ ...form, password: e.target.value })}
                                 onFocus={() => setError(false)}
                             />
+                            <i
+                                className='fa-solid fa-eye sm'
+                                onClick={() => setShowPassword((e) => !e)}
+                            ></i>
                         </div>
                     </div>
                     <div className='authentication__input'>
@@ -91,7 +95,7 @@ export const ProfileModal: FC<ProfileModalProps> = ({ setProfileModal, handleDis
                         <div className='input__container'>
                             <input
                                 className='input input__password'
-                                type='password'
+                                type={showPassword ? 'text' : 'password'}
                                 name='new__password'
                                 id='new__password'
                                 autoComplete='off'
@@ -100,6 +104,10 @@ export const ProfileModal: FC<ProfileModalProps> = ({ setProfileModal, handleDis
                                 onChange={(e) => setForm({ ...form, newpassword: e.target.value })}
                                 onFocus={() => setError(false)}
                             />
+                            <i
+                                className='fa-solid fa-eye sm'
+                                onClick={() => setShowPassword((e) => !e)}
+                            ></i>
                         </div>
                     </div>
                     <button

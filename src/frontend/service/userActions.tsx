@@ -1,7 +1,12 @@
 import { userActions } from '../store/userSlice';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
-import { getAuth, signOut } from "firebase/auth";
+import {
+    getAuth,
+    updateEmail,
+    updatePassword,
+    signOut
+} from "firebase/auth";
 import { db, userCollection } from '../firebase/firebase';
 import {
     getDoc,
@@ -35,6 +40,10 @@ export const signInHandler = (email: string, password: string, navigate: Functio
                 if (error.code === 'Missing or insufficient permission') {
                     dispatch(userActions.toggleLoader(false));
                     ToastMessage('Try again later', 'error', theme);
+                }
+                else if (error.code === 'auth/user-not-found') {
+                    dispatch(userActions.toggleLoader(false));
+                    ToastMessage('User not found', 'error', theme);
                 }
                 else {
                     console.log(error);
@@ -110,6 +119,34 @@ export const updateUserhandler = (userId: string, payload: any) => {
     };
 }
 
+export const updateEmailPassword = (userId: string, payload: any, userInfo: any, navigate: Function, pathname: String, theme: String) => {
+    return async (dispatch: any) => {
+        dispatch(userActions.toggleLoader(true));
+        const sendUserDetails = async () => {
+            try {
+                const user: any = auth.currentUser;
+                if (payload.username !== userInfo.username || payload.email !== userInfo.email) {
+                    const temp = { ...userInfo, email: payload.email, username: payload.username }
+                    const userDoc = doc(db, userCollection, userId);
+                    await updateEmail(user, payload.email)
+                    await updateDoc(userDoc, temp);
+                }
+                else if (payload.password !== payload.newpassword) {
+                    await updatePassword(user, payload.newpassword)
+                }
+                dispatch(userActions.toggleLoader(false));
+                dispatch(signOutHandler(navigate, pathname));
+                ToastMessage('Detail updated successgully', 'success', theme);
+            }
+            catch (error: any) {
+                console.log(error.code);
+                dispatch(userActions.toggleLoader(false));
+            }
+        };
+        sendUserDetails();
+    };
+}
+
 export const getAllUsersHandler = () => {
     return async (dispatch: any) => {
         dispatch(userActions.toggleLoader(true));
@@ -134,7 +171,7 @@ export const getAllUsersHandler = () => {
     };
 }
 
-export const signOutHandler = (navigate: Function, pathname: string) => {
+export const signOutHandler = (navigate: Function, pathname: String) => {
     return async (dispatch: any) => {
         dispatch(userActions.toggleLoader(true));
         const sendUserDetails = async () => {
