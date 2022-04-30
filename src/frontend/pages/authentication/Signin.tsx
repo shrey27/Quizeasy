@@ -95,12 +95,6 @@ export default function Signin() {
           >
             SIGNIN
           </button>
-          {/* <button
-            className='btn btn--wide btn--auth sb'
-            onClick={onSignInTestCredentials}
-          >
-            GUEST-USER
-          </button> */}
         </form>
         <div className='signin__links'>
           <Link to={SIGNUP} className='forgot sm'>

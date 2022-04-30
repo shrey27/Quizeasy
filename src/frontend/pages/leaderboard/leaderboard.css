@@ -1,5 +1,62 @@
 @import '../../../App.css';
 
+/* Leader board layout */
+.leaderboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'aspect__left'
+    'aspect__right';
+  align-items: flex-start;
+}
+.aspect__left {
+  grid-area: aspect__left;
+  justify-content: center;
+}
+.aspect__right {
+  grid-area: aspect__right;
+}
+
+/* Profile card */
+.profile--card {
+  max-width: none;
+  max-height: none;
+  margin: 2rem auto;
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: var(--white);
+}
+.profile__title {
+  font-size: 1.25rem;
+  margin: 1rem 0 0;
+  color: var(--text);
+  width: 100%;
+  text-align: justify;
+}
+table {
+  border: none;
+  width: 100%;
+}
+td {
+  text-align: start;
+  font-weight: 500;
+  font-size: 1.15rem;
+}
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 100%;
+  background-color: var(--text);
+  height: 1px;
+}
+
+/* Leader board cards */
 .score--card {
   max-width: none;
   max-height: none;
@@ -48,14 +105,15 @@
   max-width: 90%;
   display: flex;
   align-items: center;
-  padding: 0.5rem;
+  flex-direction: column;
   background-color: var(--white--off);
-  border: 1px solid var(--primary);
   border-radius: 5px;
+  padding: 0.5rem;
 }
 .attempt__banner {
-  width: 40%;
-  height: 10rem;
+  height: 40%;
+  width: 100%;
+  border-radius: 5px;
 }
 .attempt__title {
   font-size: 1.5rem;
@@ -77,9 +135,16 @@
   font-size: 1rem;
 }
 
-@media screen and (min-width: 1024px) {
-  .score--card,
-  .attempted--title {
-    width: 50%;
+@media screen and (min-width: 768px) {
+  .leaderboard {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: 'aspect__left aspect__right';
+  }
+  .attempt__card {
+    flex-direction: row;
+  }
+  .attempt__banner {
+    width: 40%;
+    height: 10rem;
   }
 }
