@@ -18,7 +18,7 @@ import {
 } from 'firebase/firestore';
 import { ToastMessage } from '../components';
 
-export const signInHandler = (email: string, password: string, navigate: Function, pathname: string, theme: String) => {
+export const signInHandler = (email: string, password: string, navigate: Function, pathname: string, theme: String, from: String) => {
     return async (dispatch: any) => {
         dispatch(userActions.toggleLoader(true));
         const sendUserDetails = async () => {
@@ -34,7 +34,7 @@ export const signInHandler = (email: string, password: string, navigate: Functio
                 localStorage.setItem("authUser", JSON.stringify(docSnap.data()));
                 localStorage.setItem("authToken", JSON.stringify(accessToken));
                 ToastMessage('Sign In was Successful', 'success', theme);
-                navigate(pathname);
+                navigate(from ?? pathname, { replace: true });
             }
             catch (error: any) {
                 if (error.code === 'Missing or insufficient permission') {
@@ -56,7 +56,7 @@ export const signInHandler = (email: string, password: string, navigate: Functio
     };
 }
 
-export const signUpHandler = (username: string, email: string, password: string, navigate: Function, pathname: string, theme: String) => {
+export const signUpHandler = (username: string, email: string, password: string, navigate: Function, pathname: string, theme: String, from: String) => {
     return async (dispatch: any) => {
         dispatch(userActions.toggleLoader(true));
         const sendUserDetails = async () => {
@@ -78,7 +78,7 @@ export const signUpHandler = (username: string, email: string, password: string,
                 localStorage.setItem("authToken", JSON.stringify(accessToken));
                 dispatch(userActions.toggleLoader(false));
                 ToastMessage('Sign Up was Successful', 'success', theme);
-                navigate(pathname);
+                navigate(from ?? pathname, { replace: true });
             }
             catch (error: any) {
                 switch (error.code) {

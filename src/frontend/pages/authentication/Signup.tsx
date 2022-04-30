@@ -1,6 +1,6 @@
 import './authentication.css';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { SIGNIN, HOMEPAGE } from '../../routes';
 import { regexArray, useAppDispatch, useAppSelector } from '../../utility';
 import { signUpHandler } from '../../service/userActions';
@@ -16,6 +16,9 @@ export default function Signup() {
   const loader = useAppSelector(state => state.users.loader);
   const navigate = useNavigate();
   const { theme } = useTheme();
+
+  const location: any = useLocation();
+  const from = location?.state?.from?.pathname || '/';
 
   const validateFields = () => {
     const { username, email, confirmPassword, password } = emailDetails;
@@ -42,7 +45,7 @@ export default function Signup() {
     e.preventDefault();
     const { username, email, password } = emailDetails;
     if (validateFields()) {
-      dispatch(signUpHandler(username, email, password, navigate, HOMEPAGE, theme === 'dark' ? 'dark' : 'light'));
+      dispatch(signUpHandler(username, email, password, navigate, HOMEPAGE, theme === 'dark' ? 'dark' : 'light', from));
     }
   };
 
