@@ -1,16 +1,17 @@
 import './App.css';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Navbar } from './frontend/components';
 import { availableRoutes } from './frontend/routes';
 import { useTheme } from './frontend/context';
 import { userActions } from './frontend/store/userSlice';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getAllUsersHandler } from './frontend/service/userActions';
+import { useAppDispatch } from './frontend/utility';
 
 function App() {
   const { theme } = useTheme();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const localStorageAuth = localStorage.getItem("authToken");
@@ -19,6 +20,7 @@ function App() {
       const localStorageUser = localStorage.getItem("authUser");
       dispatch(userActions.getUser(localStorageUser ? JSON.parse(localStorageUser) : null));
     }
+    dispatch(getAllUsersHandler());
   }, [dispatch])
 
   return (

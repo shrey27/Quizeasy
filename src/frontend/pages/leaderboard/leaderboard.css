@@ -22,6 +22,14 @@
 .card__content {
   font-size: 1.15rem;
 }
+.card__rank {
+  font-size: 1.25rem;
+  color: var(--text);
+  border: 2px solid var(--text);
+  border-radius: 5px;
+  padding: 0.75rem;
+  text-align: center;
+}
 .alert {
   margin: 1rem 0 0.5rem 0;
   border-radius: 5px;

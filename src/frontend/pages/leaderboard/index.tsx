@@ -1,11 +1,20 @@
 import './leaderboard.css';
-import { useAppSelector, useAppDispatch } from '../../utility';
+import { useAppSelector, useAppDispatch, AllUser } from '../../utility';
 import { useNavigate } from 'react-router-dom';
 import { RESULT } from '../../routes';
 import { userActions } from '../../store/userSlice';
+import { useEffect, useState } from 'react';
+
+const defaultvalue = {
+    userrank: 0,
+    first: '',
+    second: '',
+    third: ''
+}
 
 export default function Leaderboard() {
-    const userInfo = useAppSelector(state => state.users.userInfo);
+    const [rank, setRank] = useState(defaultvalue);
+    const { userInfo, allUsers } = useAppSelector(state => state.users);
     const { quiz } = userInfo
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -17,6 +26,27 @@ export default function Leaderboard() {
         navigate(RESULT);
     }
 
+    useEffect(() => {
+        let temp: AllUser[] = [...allUsers];
+        temp = temp?.sort((a: any, b: any) => b.score - a.score);
+
+        console.log(userInfo, allUsers)
+
+        let userrank = 0;
+        for (let i = 0; i < temp.length; i++) {
+            if (temp[i].username === userInfo.username) userrank = i + 1;
+        }
+
+        setRank((state: any) => ({
+            ...state,
+            userrank,
+            first: `${temp[0]?.username}`,
+            second: `${temp[1]?.username}`,
+            third: `${temp[2]?.username}`,
+        }))
+
+    }, [allUsers, userInfo])
+
     return <div className='xs-s'>
         <div className="score--card">
             <img
@@ -25,27 +55,31 @@ export default function Leaderboard() {
                 className="score--banner"
             />
             <section className="score--content">
-                <h1 className="card__title">Total Coins : {Math.trunc(userInfo.score / 10)}</h1>
-                <h1 className="text md sb sm-s border">Your Rank : 12/1300</h1>
+                <h1 className="card__title">
+                    Total Coins : {Math.trunc(userInfo.score / 10)}
+                </h1>
+                <h1 className="card__rank">
+                    {`Your Rank : ${rank.userrank}/${allUsers.length}`}
+                </h1>
             </section>
         </div>
 
         <div className="score--card flex-vertical sm-s">
             <h1 className="text lg sb sm-s">LEADERBOARD</h1>
             <span className="alert alert--success">
-                <i className="fa-solid fa-trophy"></i>Rank - 1 Jay Hopkins
+                <i className="fa-solid fa-trophy"></i>Rank - 1 {rank.first}
             </span>
 
             <span className="alert alert--primary">
-                <i className="fa-solid fa-medal"></i>Rank - 2 Ricky DoGato</span>
+                <i className="fa-solid fa-medal"></i>Rank - 2 {rank.second}</span>
             <span className="alert alert--error">
-                <i className="fa-solid fa-award"></i>Rank - 3 Rita Hayworth</span>
+                <i className="fa-solid fa-award"></i>Rank - 3 {rank.third}</span>
         </div>
 
         <div className="score--card flex-vertical sm-s">
             <h1 className="text lg sb sm-s">YOUR ATTEMPTED QUIZ</h1>
             {userInfo?.quiz?.map((e: any) => {
-                return <div className="category">
+                return <div className="category" key={e.title}>
                     <div className="attempt__card shadow">
                         <img
                             src={e.banner}

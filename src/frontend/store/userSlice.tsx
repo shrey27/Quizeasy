@@ -21,6 +21,7 @@ const initialState = {
         banner: '',
         description: ''
     },
+    allUsers: [],
     loader: false
 }
 
@@ -47,6 +48,9 @@ const userSlice = createSlice({
             const temp = action.payload
             state.attemptedQuiz = temp
         },
+        getAllUsers(state, action) {
+            state.allUsers = action.payload;
+        }
     }
 });
 

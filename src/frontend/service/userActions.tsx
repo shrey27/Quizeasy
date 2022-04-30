@@ -7,7 +7,9 @@ import {
     getDoc,
     doc,
     setDoc,
-    updateDoc
+    updateDoc,
+    getDocs,
+    collection
 } from 'firebase/firestore';
 import { ToastMessage } from '../components';
 
@@ -101,6 +103,31 @@ export const updateUserhandler = (userId: string, payload: any) => {
             }
             catch (error: any) {
                 console.log(error.code);
+                dispatch(userActions.toggleLoader(false));
+            }
+        };
+        sendUserDetails();
+    };
+}
+
+export const getAllUsersHandler = () => {
+    return async (dispatch: any) => {
+        dispatch(userActions.toggleLoader(true));
+        const sendUserDetails = async () => {
+            try {
+                const docRef = collection(db, userCollection);
+                const data = await getDocs(docRef);
+                const dataList = await data.docs.map((doc) => ({
+                    ...doc.data(),
+                    id: doc.id
+                }));
+                const temp = dataList.map((e: any) => ({ username: e.username, score: e.score }))
+                dispatch(userActions.getAllUsers(temp))
+                dispatch(userActions.toggleLoader(false));
+            }
+            catch (error: any) {
+                console.log(error.code);
+                dispatch(userActions.toggleLoader(false));
             }
         };
         sendUserDetails();
