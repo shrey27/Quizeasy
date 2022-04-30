@@ -131,7 +131,7 @@ export const updateEmailPassword = (userId: string, payload: any, userInfo: any,
                     await updateEmail(user, payload.email)
                     await updateDoc(userDoc, temp);
                 }
-                else if (payload.password !== payload.newpassword) {
+                if (payload.password !== payload.newpassword) {
                     await updatePassword(user, payload.newpassword)
                 }
                 dispatch(userActions.toggleLoader(false));
