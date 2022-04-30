@@ -13,7 +13,9 @@ const defaultState = {
     title: '',
     questions: [],
     answers: [],
-    options: []
+    options: [],
+    banner: '',
+    description: ''
 }
 const TIME = 35;
 export default function Quiz() {
@@ -56,6 +58,8 @@ export default function Quiz() {
                 questions: quizObject.questions,
                 answers: quizObject.answers,
                 options: quizObject.options,
+                banner: quizObject.banner,
+                description: quizObject.description,
                 attempts,
                 score,
                 quizId

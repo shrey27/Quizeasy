@@ -17,7 +17,9 @@ const initialState = {
         answers: [],
         options: [{ one: '', two: '', three: '' }],
         attempts: [],
-        score: 0
+        score: 0,
+        banner: '',
+        description: ''
     },
     loader: false
 }
