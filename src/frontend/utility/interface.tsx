@@ -2,6 +2,11 @@ export interface SignOutModalProps {
     setSignoutModal: Function,
     handleDispatch: Function
 }
+export interface ProfileModalProps {
+    setProfileModal: Function,
+    handleDispatch: Function,
+    modalObject: Object
+}
 export interface ThemeProviderProps {
     children?: React.ReactNode;
 }
@@ -34,4 +39,9 @@ export interface OptionsObject {
     index: Number,
     handleOnSubmit: Function,
     handleOnReset: Function
+}
+
+export interface AllUser {
+    username: String,
+    score: Number
 }

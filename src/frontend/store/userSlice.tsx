@@ -11,13 +11,17 @@ const initialState = {
     token: '',
     categoryQuiz: [],
     attemptedQuiz: {
+        quizId: '',
         title: '',
         questions: [],
         answers: [],
         options: [{ one: '', two: '', three: '' }],
         attempts: [],
-        score: 0
+        score: 0,
+        banner: '',
+        description: ''
     },
+    allUsers: [],
     loader: false
 }
 
@@ -44,6 +48,9 @@ const userSlice = createSlice({
             const temp = action.payload
             state.attemptedQuiz = temp
         },
+        getAllUsers(state, action) {
+            state.allUsers = action.payload;
+        }
     }
 });
 

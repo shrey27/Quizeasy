@@ -13,7 +13,9 @@ const defaultState = {
     title: '',
     questions: [],
     answers: [],
-    options: []
+    options: [],
+    banner: '',
+    description: ''
 }
 const TIME = 35;
 export default function Quiz() {
@@ -56,16 +58,18 @@ export default function Quiz() {
                 questions: quizObject.questions,
                 answers: quizObject.answers,
                 options: quizObject.options,
+                banner: quizObject.banner,
+                description: quizObject.description,
                 attempts,
-                score
+                score,
+                quizId
             }
             dispatch(userActions.getAttemptedQuiz(quizObj))
             const newInfo = {
                 ...userInfo,
                 score: userInfo.score + score,
-                quiz: [...userInfo.quiz, { ...quizObj, quizId }]
+                quiz: userInfo.quiz ? [...userInfo.quiz, { ...quizObj, quizId }] : [{ ...quizObj, quizId }]
             }
-            console.log(newInfo);
             dispatch(updateUserhandler(userInfo.uid, newInfo))
             navigate(RESULT);
         }

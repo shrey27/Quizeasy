@@ -1,0 +1,150 @@
+@import '../../../App.css';
+
+/* Leader board layout */
+.leaderboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'aspect__left'
+    'aspect__right';
+  align-items: flex-start;
+}
+.aspect__left {
+  grid-area: aspect__left;
+  justify-content: center;
+}
+.aspect__right {
+  grid-area: aspect__right;
+}
+
+/* Profile card */
+.profile--card {
+  max-width: none;
+  max-height: none;
+  margin: 2rem auto;
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: var(--white);
+}
+.profile__title {
+  font-size: 1.25rem;
+  margin: 1rem 0 0;
+  color: var(--text);
+  width: 100%;
+  text-align: justify;
+}
+table {
+  border: none;
+  width: 100%;
+}
+td {
+  text-align: start;
+  font-weight: 500;
+  font-size: 1.15rem;
+}
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 100%;
+  background-color: var(--text);
+  height: 1px;
+}
+
+/* Leader board cards */
+.score--card {
+  max-width: none;
+  max-height: none;
+  margin: 2rem auto;
+  width: 90%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--white);
+  border-radius: 5px;
+}
+.score--banner {
+  width: 20%;
+  height: 20%;
+}
+.score--content {
+  vertical-align: center;
+}
+.card__content {
+  font-size: 1.15rem;
+}
+.card__rank {
+  font-size: 1.25rem;
+  color: var(--text);
+  border: 2px solid var(--text);
+  border-radius: 5px;
+  padding: 0.75rem;
+  text-align: center;
+}
+.alert {
+  margin: 1rem 0 0.5rem 0;
+  border-radius: 5px;
+  padding: 0.85rem 0;
+  text-align: center;
+}
+.submenu__name {
+  margin: 0;
+}
+.attempted--title {
+  margin: auto;
+}
+
+/* Quiz Card */
+.attempt__card {
+  max-width: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--white--off);
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+.attempt__banner {
+  height: 40%;
+  width: 100%;
+  border-radius: 5px;
+}
+.attempt__title {
+  font-size: 1.5rem;
+  color: var(--text);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.attempt__subtitle {
+  margin: 1rem 0;
+  font-size: 1.25rem;
+  color: var(--text);
+  font-weight: 500;
+}
+.attempt__content {
+  width: 90%;
+  color: var(--text);
+  font-weight: 500;
+  text-align: justify;
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .leaderboard {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: 'aspect__left aspect__right';
+  }
+  .attempt__card {
+    flex-direction: row;
+  }
+  .attempt__banner {
+    width: 40%;
+    height: 10rem;
+  }
+}

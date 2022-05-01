@@ -1,6 +1,6 @@
 import './navbar.css';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LANDING, SIGNIN } from '../../routes';
+import { Link, useNavigate } from 'react-router-dom';
+import { HOMEPAGE, LANDING, SIGNIN, LEADERBOARD } from '../../routes';
 import { useTheme } from '../../context';
 import { useAppSelector, useAppDispatch } from '../../utility';
 import { signOutHandler } from '../../service/userActions';
@@ -8,7 +8,6 @@ import { SignoutModal } from '../modal/SignoutModal';
 import { useState } from 'react';
 
 export function Navbar() {
-    const { pathname } = useLocation();
     const navigate = useNavigate();
     const [signoutModal, setSignoutModal] = useState(false);
     const { theme, switchTheme } = useTheme();
@@ -31,10 +30,10 @@ export function Navbar() {
         <nav className="navbar shadow">
             <section className="begin">
                 <Link to={LANDING}>
-                    <img className="box__image" src='logo.png' alt='logo' />
+                    <img className="box__image" src='https://res.cloudinary.com/apollo27/image/upload/v1651258405/logo_lvwf0l.png' alt='logo' />
                 </Link>
             </section>
-            {pathname === '/homepage' && <section className="middle cen sm-s">
+            {/* {pathname === '/homepage' && <section className="middle cen sm-s">
                 <div className="search--ctr">
                     <i className="fas fa-search search--btn"></i>
                     <input
@@ -46,14 +45,18 @@ export function Navbar() {
                         autoComplete="off"
                     />
                 </div>
-            </section>}
+            </section>} */}
             <section className="end sm-s">
                 <div className="menu">
-                    {theme === 'light' ? <button className='btn btn--auth--solid sm sb' onClick={switchTheme}><i className="fa-solid fa-moon"></i></button>
-                        : <button className='btn btn--dark sm sb' onClick={switchTheme}><i className="fa-solid fa-sun"></i></button>
-                    }<button className='btn btn--cancel--solid sm sb'
-                        onClick={handleAuthentication}>{token ? 'Logout' : 'Login'}
-                        <i className="fa-solid fa-arrow-right-to-bracket"></i></button>
+                    {theme === 'light' ? <button className='btn--navbar sm sb' onClick={switchTheme}><i className="fa-solid fa-moon"></i></button>
+                        : <button className='btn--navbar sm sb' onClick={switchTheme}><i className="fa-solid fa-sun"></i></button>
+                    }
+                    {token && <Link to={HOMEPAGE} className='btn--navbar sm sb'><i className="fa-solid fa-house"></i></Link>}
+                    {token && <Link to={LEADERBOARD} className='btn--navbar sm sb'><i className="fa-solid fa-trophy"></i></Link>}
+                    <button className='btn btn--cancel--solid sm sb'
+                        onClick={handleAuthentication}><span className='logout__mobile'>{token ? 'Logout' : 'Login'}</span>
+                        <i className="fa-solid fa-arrow-right-to-bracket"></i>
+                    </button>
                 </div>
             </section>
         </nav>

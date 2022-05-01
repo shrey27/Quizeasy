@@ -1,6 +1,6 @@
 import './authentication.css';
 import { useState, Fragment } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { SIGNUP, HOMEPAGE } from '../../routes';
 import { signInHandler } from '../../service/userActions';
 import { useAppDispatch, regexArray, useAppSelector } from '../../utility';
@@ -10,13 +10,16 @@ import { useTheme } from '../../context';
 export default function Signin() {
   const [showPassword, setShowPassword] = useState(false);
   const [emailDetails, setEmailDetails] = useState({
-    email: 'carljones@gmail.com', password: 'carljones1234'
+    email: 'carljamy@gmail.com', password: 'carljamy1234'
   })
   const [error, setError] = useState(false)
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const loader = useAppSelector(state => state.users.loader);
   const { theme } = useTheme();
+
+  const location: any = useLocation();
+  const from = location?.state?.from?.pathname || '/';
 
   const validateFields = () => {
     const { email, password } = emailDetails;
@@ -37,7 +40,7 @@ export default function Signin() {
     e.preventDefault();
     const { email, password } = emailDetails;
     if (validateFields()) {
-      dispatch(signInHandler(email, password, navigate, HOMEPAGE, theme === 'dark' ? 'dark' : 'light'));
+      dispatch(signInHandler(email, password, navigate, HOMEPAGE, theme === 'dark' ? 'dark' : 'light', from));
     }
   };
 
@@ -95,12 +98,6 @@ export default function Signin() {
           >
             SIGNIN
           </button>
-          {/* <button
-            className='btn btn--wide btn--auth sb'
-            onClick={onSignInTestCredentials}
-          >
-            GUEST-USER
-          </button> */}
         </form>
         <div className='signin__links'>
           <Link to={SIGNUP} className='forgot sm'>

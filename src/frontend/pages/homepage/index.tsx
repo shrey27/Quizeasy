@@ -9,7 +9,7 @@ export default function Homepage() {
         <div className="category">
             <Link to={CATEGORY + '/movies'} className="card topic">
                 <img
-                    src="https://images2.minutemediacdn.com/image/upload/c_crop,h_717,w_1276,x_0,y_291/v1617807217/shape/mentalfloss/645243-uncommongoods-tim-aurelia-sanders-movie-critic-imdb-poster-details.png?itok=Qc8dJkLc"
+                    src="https://res.cloudinary.com/apollo27/image/upload/v1651317021/movies_og1idx.png"
                     alt="Banner"
                     className="card__banner"
                 />
@@ -22,7 +22,7 @@ export default function Homepage() {
             </Link>
             <Link to={CATEGORY + '/series'} className="card topic">
                 <img
-                    src="https://blog.ezeonsoft.com/wp-content/uploads/2020/12/dce16bb609d832b10a2ba4daf2c6cc0b1.jpg"
+                    src="https://res.cloudinary.com/apollo27/image/upload/v1651317019/series_ou07xc.jpg"
                     alt="Banner"
                     className="card__banner"
                 />
@@ -35,7 +35,7 @@ export default function Homepage() {
             </Link>
             <Link to={CATEGORY + '/books'} className="card topic">
                 <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSPCSoCyv3EUZgM8jNNpo51gjwfEA9cNoF-w-m2ouqzFZRnPBDX5hxvJVVBr438xFEl3Y&usqp=CAU"
+                    src="https://res.cloudinary.com/apollo27/image/upload/v1651317019/books_u32csb.jpg"
                     alt="Banner"
                     className="card__banner"
                 />
@@ -48,7 +48,7 @@ export default function Homepage() {
             </Link>
             <Link to={CATEGORY + '/music'} className="card topic">
                 <img
-                    src="https://rukminim1.flixcart.com/image/416/416/kb5eikw0/poster/v/p/k/large-music-posters-for-room-set-of-6-best-music-posters-vintage-original-imafskknrpzzfcpq.jpeg?q=70"
+                    src="https://res.cloudinary.com/apollo27/image/upload/v1651317018/music_yem6nb.webp"
                     alt="Banner"
                     className="card__banner"
                 />
