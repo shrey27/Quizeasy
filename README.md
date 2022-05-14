@@ -49,3 +49,7 @@ coins to earn rewards.
 [Quizeasy](https://quizeasy.vercel.app/)
 
 ## Demo Video
+
+https://user-images.githubusercontent.com/26894106/168444899-c6efd24a-556d-4d21-a3ba-d7d0b0c752aa.mp4
+
+ 
