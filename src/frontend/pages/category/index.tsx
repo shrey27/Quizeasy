@@ -15,9 +15,12 @@ export default function Category() {
     const { quiz } = userInfo
     
     const handleAttemptQuizUpdate = (id: String) => {
-        const quizObject = quiz.find((item: any) => item.quizId === id);
-        dispatch(userActions.getAttemptedQuiz(quizObject))
-        navigate(RESULT);
+        if (quiz) {
+            const quizObject = quiz.find((item: any) => item.quizId === id);
+            dispatch(userActions.getAttemptedQuiz(quizObject));
+            navigate(RESULT);
+        }
+        
     }
 
     return <Fragment>
