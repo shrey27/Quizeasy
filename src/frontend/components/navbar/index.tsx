@@ -53,7 +53,7 @@ export function Navbar() {
                     }
                     {token && <Link to={HOMEPAGE} className='btn--navbar sm sb'><i className="fa-solid fa-house"></i></Link>}
                     {token && <Link to={LEADERBOARD} className='btn--navbar sm sb'><i className="fa-solid fa-trophy"></i></Link>}
-                    <button className='btn btn--cancel--solid sm sb'
+                    <button className='btn btn--cancel--solid sm sb' name='auth'
                         onClick={handleAuthentication}><span className='logout__mobile'>{token ? 'Logout' : 'Login'}</span>
                         <i className="fa-solid fa-arrow-right-to-bracket"></i>
                     </button>

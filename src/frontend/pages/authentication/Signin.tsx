@@ -127,7 +127,7 @@ export default function Signin() {
               className="btn btn--wide btn--auth--solid sb"
               onClick={onSignInHandler}
             >
-              SIGNIN
+              SIGN IN
             </button>
             <button
               type="button"
