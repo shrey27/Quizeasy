@@ -17,8 +17,9 @@ import {
     collection
 } from 'firebase/firestore';
 import { ToastMessage } from '../components';
+import { Theme } from 'react-toastify';
 
-export const signInHandler = (email: string, password: string, navigate: Function, pathname: string, theme: String, from: String) => {
+export const signInHandler = (email: string, password: string, navigate: Function, pathname: string, theme: Theme, from: String) => {
     return async (dispatch: any) => {
         dispatch(userActions.toggleLoader(true));
         const sendUserDetails = async () => {
@@ -56,7 +57,7 @@ export const signInHandler = (email: string, password: string, navigate: Functio
     };
 }
 
-export const signUpHandler = (username: string, email: string, password: string, navigate: Function, pathname: string, theme: String, from: String) => {
+export const signUpHandler = (username: string, email: string, password: string, navigate: Function, pathname: string, theme: Theme, from: String) => {
     return async (dispatch: any) => {
         dispatch(userActions.toggleLoader(true));
         const sendUserDetails = async () => {
@@ -119,7 +120,7 @@ export const updateUserhandler = (userId: string, payload: any) => {
     };
 }
 
-export const updateEmailPassword = (userId: string, payload: any, userInfo: any, navigate: Function, pathname: String, theme: String) => {
+export const updateEmailPassword = (userId: string, payload: any, userInfo: any, navigate: Function, pathname: String, theme: Theme) => {
     return async (dispatch: any) => {
         dispatch(userActions.toggleLoader(true));
         const sendUserDetails = async () => {

@@ -2,7 +2,7 @@ import "./leaderboard.css";
 import { useAppSelector, useAppDispatch, AllUser } from "../../utility";
 import { useNavigate } from "react-router-dom";
 import { LANDING, RESULT } from "../../routes";
-import { userActions } from "../../store/userSlice";
+import { userActions, AttemptedQuizObject } from "../../store/userSlice";
 import { Fragment, useEffect, useState } from "react";
 import { ProfileModal } from "../../components/modal/ProfileModal";
 import { updateEmailPassword } from "../../service/userActions";
@@ -14,6 +14,12 @@ const defaultvalue = {
   first: "",
   second: "",
   third: "",
+};
+const formDefault = {
+  email: "",
+  username: "",
+  password: "",
+  newpassword: "",
 };
 
 export default function Leaderboard() {
@@ -27,7 +33,9 @@ export default function Leaderboard() {
   const { theme } = useTheme();
 
   const handleAttemptQuizUpdate = (id: String) => {
-    const quizObject = quiz.find((item: any) => item.quizId === id);
+    const quizObject = quiz.find(
+      (item: typeof AttemptedQuizObject) => item.quizId === id
+    );
     dispatch(userActions.getAttemptedQuiz(quizObject));
     navigate(RESULT);
   };
@@ -39,7 +47,7 @@ export default function Leaderboard() {
     for (let i = 0; i < temp.length; i++) {
       if (temp[i].username === userInfo.username) userrank = i + 1;
     }
-    setRank((state: any) => ({
+    setRank((state: typeof defaultvalue) => ({
       ...state,
       userrank,
       first: `${temp[0]?.username}`,
@@ -48,7 +56,7 @@ export default function Leaderboard() {
     }));
   }, [allUsers, userInfo]);
 
-  const handleDispatch = (profileObject: any) => {
+  const handleDispatch = (profileObject: typeof formDefault) => {
     dispatch(
       updateEmailPassword(
         userInfo.uid,
@@ -146,7 +154,7 @@ export default function Leaderboard() {
 
               <div className="score--card flex-vertical sm-s">
                 <h1 className="text lg sb sm-s">YOUR ATTEMPTED QUIZ</h1>
-                {userInfo?.quiz?.map((e: any) => {
+                {userInfo?.quiz?.map((e: typeof AttemptedQuizObject) => {
                   return (
                     <div className="category" key={e.title}>
                       <div className="attempt__card shadow">

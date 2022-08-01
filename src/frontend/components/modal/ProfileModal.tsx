@@ -2,22 +2,23 @@ import "./modal.css";
 import { useEffect, useState } from "react";
 import { ProfileModalProps } from "../../utility";
 
+const formDefault = {
+  email: "",
+  username: "",
+  password: "",
+  newpassword: "",
+};
 export const ProfileModal = ({
   setProfileModal,
   handleDispatch,
   modalObject,
 }: ProfileModalProps) => {
-  const [form, setForm] = useState({
-    email: "",
-    username: "",
-    password: "",
-    newpassword: "",
-  });
+  const [form, setForm] = useState(formDefault);
   const [error, setError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-    setForm((object: any) => ({ ...object, ...modalObject }));
+    setForm((object: typeof formDefault) => ({ ...object, ...modalObject }));
   }, [modalObject]);
 
   const handleSubmit = () => {
