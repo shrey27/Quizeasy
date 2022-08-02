@@ -38,7 +38,7 @@ export default function Signin() {
     return true;
   };
 
-  const onSignInHandler = (e: any) => {
+  const onSignInHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const { email, password } = emailDetails;
     if (validateFields()) {
@@ -55,7 +55,7 @@ export default function Signin() {
     }
   };
 
-  const handleGuestCredentials = (e: any) => {
+  const handleGuestCredentials = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setEmailDetails({
       email: "johndoe12@gmail.com",

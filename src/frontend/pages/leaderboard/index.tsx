@@ -42,7 +42,7 @@ export default function Leaderboard() {
 
   useEffect(() => {
     let temp: AllUser[] = [...allUsers];
-    temp = temp?.sort((a: any, b: any) => b.score - a.score);
+    temp = temp?.sort((a: AllUser, b: AllUser) => +b.score - +a.score);
     let userrank = 0;
     for (let i = 0; i < temp.length; i++) {
       if (temp[i].username === userInfo.username) userrank = i + 1;

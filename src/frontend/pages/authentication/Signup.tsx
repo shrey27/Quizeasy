@@ -46,7 +46,7 @@ export default function Signup() {
     return true;
   };
 
-  const onSignUpHandler = (e: any) => {
+  const onSignUpHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const { username, email, password } = emailDetails;
     if (validateFields()) {
@@ -64,7 +64,7 @@ export default function Signup() {
     }
   };
 
-  const handleGuestCredentials = (e: any) => {
+  const handleGuestCredentials = (e: React.SyntheticEvent) => {
     setEmailDetails({
       username: "Carl James",
       email: "carljamey@gmail.com",

@@ -10,15 +10,15 @@ const AttemptedQuizObject = {
   banner: "",
   description: "",
 };
-
+const userInfoObject = {
+  uid: "",
+  email: "",
+  quiz: [],
+  username: "",
+  score: 0,
+};
 const initialState = {
-  userInfo: {
-    uid: "",
-    email: "",
-    quiz: [],
-    username: "",
-    score: 0,
-  },
+  userInfo: userInfoObject,
   token: "",
   categoryQuiz: [],
   attemptedQuiz: {
@@ -67,4 +67,4 @@ const userSlice = createSlice({
 
 export const userActions = userSlice.actions;
 export default userSlice.reducer;
-export { AttemptedQuizObject };
+export { AttemptedQuizObject, userInfoObject };
