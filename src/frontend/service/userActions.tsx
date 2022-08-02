@@ -36,7 +36,6 @@ export const signInHandler = (
           password
         );
         const resUser: any = await response?.user;
-        debugger;
         const { accessToken, uid } = resUser;
         const docRef = doc(db, userCollection, uid);
         const docSnap = await getDoc(docRef);

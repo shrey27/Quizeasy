@@ -1,5 +1,5 @@
 import "./modal.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ProfileModalProps } from "../../utility";
 
 const formDefault = {
@@ -21,7 +21,8 @@ export const ProfileModal = ({
     setForm((object: typeof formDefault) => ({ ...object, ...modalObject }));
   }, [modalObject]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
     if (form.username !== "" && form.email !== "" && form.password !== "") {
       handleDispatch(form);
     } else {
