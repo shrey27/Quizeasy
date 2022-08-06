@@ -139,11 +139,13 @@ export default function Leaderboard() {
               <div className="score--card flex-vertical sm-s">
                 <h1 className="text lg sb sm-s">LEADERBOARD</h1>
                 <span className="alert alert--success">
-                  <i className="fa-solid fa-trophy"></i>Rank - 1 {rank.first}
+                  <i className="fa-solid fa-trophy"></i>Rank - 1{" "}
+                  {rank.first ?? "Mark Twain"}
                 </span>
 
                 <span className="alert alert--primary">
-                  <i className="fa-solid fa-medal"></i>Rank - 2 {rank.second}
+                  <i className="fa-solid fa-medal"></i>Rank - 2{" "}
+                  {rank.second ?? "Jane Watson"}
                 </span>
 
                 <span className="alert alert--error">

@@ -127,6 +127,7 @@ export const ProfileModal = ({
             type="submit"
             className="btn btn--wide btn--auth--solid sb"
             onClick={handleSubmit}
+            data-profile-submit="PROFILE_SUBMIT"
           >
             UPDATE
           </button>

@@ -58,11 +58,19 @@ export function Navbar() {
         <section className="end sm-s">
           <div className="menu">
             {theme === "light" ? (
-              <button className="btn--navbar sm sb" onClick={switchTheme}>
+              <button
+                className="btn--navbar sm sb"
+                onClick={switchTheme}
+                data-dark="DARK_THEME"
+              >
                 <i className="fa-solid fa-moon"></i>
               </button>
             ) : (
-              <button className="btn--navbar sm sb" onClick={switchTheme}>
+              <button
+                className="btn--navbar sm sb"
+                onClick={switchTheme}
+                data-light="LIGHT_THEME"
+              >
                 <i className="fa-solid fa-sun"></i>
               </button>
             )}

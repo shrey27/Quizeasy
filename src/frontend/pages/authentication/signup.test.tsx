@@ -4,6 +4,7 @@ import { store } from "../../store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import Signup from "./Signup";
+import { userActions } from "../../store/userSlice";
 
 describe("Sign In Page Authentication", () => {
   it("SignUp Form", async () => {
@@ -29,7 +30,27 @@ describe("Sign In Page Authentication", () => {
       await fireEvent.click(submitBtn);
     });
 
-    let LOADER = screen.getAllByAltText("loader")[0];
-    expect(LOADER).toBeInTheDocument();
+    act(() => {
+      store.dispatch(userActions.getToken("SOME_TOKEN"));
+    });
+
+    let state = store.getState().users;
+    expect(state.token).toBe("SOME_TOKEN");
+
+    act(() => {
+      store.dispatch(
+        userActions.getUser({
+          uid: "uid",
+          email: "randomEmail@xyz.com",
+          quiz: [],
+          username: "random",
+          score: 0,
+        })
+      );
+    });
+
+    state = store.getState().users;
+    expect(state.userInfo.email).toBe("randomEmail@xyz.com");
+    expect(state.userInfo.username).toBe("random");
   });
 });

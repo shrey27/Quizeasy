@@ -54,7 +54,7 @@ export const signInHandler = (
           dispatch(userActions.toggleLoader(false));
           ToastMessage("User not found", "error", theme);
         } else {
-          console.log(error);
+          // console.log(error);
           dispatch(userActions.toggleLoader(false));
           ToastMessage("Sign In failed! Try Again Later", "error", theme);
         }

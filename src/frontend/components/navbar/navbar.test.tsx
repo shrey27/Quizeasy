@@ -55,3 +55,4 @@ describe("Checkout Logout", () => {
     expect(screen.queryAllByText(/Are you sure you want to signout ?/i));
   });
 });
+

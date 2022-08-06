@@ -32,4 +32,4 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
 const useTheme = () => useContext(ThemeContext);
 
-export { useTheme, ThemeProvider };
+export { useTheme, ThemeProvider, ThemeContext };
