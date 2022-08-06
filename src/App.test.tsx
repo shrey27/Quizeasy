@@ -21,13 +21,23 @@ describe("Theme Test", () => {
         </Provider>
       </BrowserRouter>
     );
-    // let darkBtn: any = baseElement.querySelector('[data-dark="DARK_THEME"]');
+   
     let lightBtn: any = baseElement.querySelector('[data-light="LIGHT_THEME"]');
     await act(async () => {
       await fireEvent.click(lightBtn);
     });
-
-    let appTheme = document.querySelector('[data-theme="light"]');
+    let { baseElement: appElement } = render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <ThemeContext.Provider
+            value={{ theme: "dark", switchTheme: jest.fn() }}
+          >
+            <App />
+          </ThemeContext.Provider>
+        </Provider>
+      </BrowserRouter>
+    );
+    let appTheme = appElement.querySelector('[data-theme="light"]');
     expect(appTheme).toBeDefined();
   });
 });
