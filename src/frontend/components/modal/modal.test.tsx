@@ -5,6 +5,7 @@ import LeaderBoard from "../../pages/leaderboard";
 import { store } from "../../store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { act } from "react-dom/test-utils";
 
 test("Profile Modal Field Present", async () => {
   const { baseElement } = render(
@@ -15,7 +16,9 @@ test("Profile Modal Field Present", async () => {
     </BrowserRouter>
   );
 
-  await fireEvent.click(screen.getByText(/update/i));
+  await act(async () => {
+    await fireEvent.click(screen.getByText(/update/i));
+  });
   expect(screen.queryByLabelText(/Username/i)).toBeInTheDocument();
   expect(screen.queryByLabelText(/Email ID/i)).toBeInTheDocument();
   expect(screen.queryByLabelText(/Old Password/i)).toBeInTheDocument();
@@ -24,7 +27,11 @@ test("Profile Modal Field Present", async () => {
   let submitBtn: any = baseElement.querySelector(
     '[data-profile-submit="PROFILE_SUBMIT"]'
   );
-  await fireEvent.click(submitBtn);
+
+  await act(async () => {
+    await fireEvent.click(submitBtn);
+  });
+
   expect(
     screen.queryAllByText(/Enter name, email and password in proper format/i)
   );

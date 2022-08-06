@@ -4,7 +4,8 @@ import { store } from "../../store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import Category from "./index";
-import * as hooks from "../../utility/hooks";
+import { userActions } from "../../store/userSlice";
+import { act } from "react-dom/test-utils";
 
 describe("Movie category page", () => {
   it("Movies", async () => {
@@ -26,19 +27,22 @@ describe("Movie category page", () => {
     let LOADER = screen.getAllByAltText("loader")[0];
     expect(LOADER).toBeInTheDocument();
 
-    jest.spyOn(hooks, "useCategoryId").mockImplementation(() => [
-      {
-        id: "Q1",
-        title: "Quiz data",
-        description: "description",
-        banner: "banner",
-        questions: ["random"],
-        answers: ["random"],
-        options: [{ one: "one", two: "two", three: "three" }],
-      },
-    ]);
-    // let quizData = await hooks.useCategoryId("movies");
-    // let subtext = screen.getByText(/Pick a quiz from these options/i);
-    // expect(subtext).toBeInTheDocument();
+    await act(() => {
+      store.dispatch(
+        userActions.getAttemptedQuiz({
+          quizId: "QI_1",
+          title: "",
+          questions: [],
+          answers: [],
+          options: [{ one: "", two: "", three: "" }],
+          attempts: [],
+          score: 0,
+          banner: "",
+          description: "",
+        })
+      );
+    });
+    let state = store.getState().users;
+    expect(state.attemptedQuiz.quizId).toBe("QI_1");
   });
 });

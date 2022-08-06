@@ -59,7 +59,7 @@ describe("Result Page Testing", () => {
     let title = screen.getByText(/Result/i);
     expect(title).toBeInTheDocument();
 
-    act(() => {
+    await act(() => {
       store.dispatch(userActions.getAttemptedQuiz(sampledata));
     });
 

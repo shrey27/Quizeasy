@@ -40,7 +40,6 @@ export interface OptionsObject {
     handleOnSubmit: Function,
     handleOnReset: Function
 }
-
 export interface AllUser {
     username: String,
     score: Number

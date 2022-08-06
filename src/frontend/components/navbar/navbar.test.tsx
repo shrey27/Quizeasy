@@ -38,7 +38,7 @@ describe("Checkout Logout", () => {
       </BrowserRouter>
     );
 
-    act(() => {
+    await act(() => {
       store.dispatch(
         userActions.getToken({
           token: "SOME_TOKEN",
@@ -51,8 +51,10 @@ describe("Checkout Logout", () => {
     let logoutButton: any = baseElement.querySelector('[data-auth="LOGOUT"]');
     expect(logoutButton).toBeDefined();
 
-    fireEvent.click(logoutButton);
+    await act(async () => {
+      await fireEvent.click(logoutButton);
+    });
+
     expect(screen.queryAllByText(/Are you sure you want to signout ?/i));
   });
 });
-

@@ -56,6 +56,7 @@ export default function Category() {
                       <button
                         className="btn btn--dark"
                         onClick={() => handleAttemptQuizUpdate(element.id)}
+                        data-check-result="CHECK_RESULT"
                       >
                         Check Result
                       </button>
@@ -63,6 +64,7 @@ export default function Category() {
                       <Link
                         to={QUIZ + `/${element.id}`}
                         className="btn btn--dark"
+                        data-play="PLAY_QUIZ"
                       >
                         Play Now
                       </Link>

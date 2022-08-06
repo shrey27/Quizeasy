@@ -4,10 +4,11 @@ import { store } from "../../store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import LeaderBoard from "./index";
+import { act } from "react-dom/test-utils";
 
 describe("LeaderBoard Testing", () => {
   it("Test Leaderboard", async () => {
-    let { baseElement } = render(
+    render(
       <BrowserRouter>
         <Provider store={store}>
           <LeaderBoard />
@@ -20,7 +21,10 @@ describe("LeaderBoard Testing", () => {
     screen.queryAllByText(/total coins/i);
     let updateBtn = screen.getByText(/update/i);
     expect(updateBtn).toBeDefined();
-    await fireEvent.click(updateBtn);
+    await act(async () => {
+      await fireEvent.click(updateBtn);
+    });
+
     screen.queryAllByText(/old password/i);
   });
 });

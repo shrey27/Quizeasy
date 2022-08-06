@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { store } from "../../store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
@@ -26,10 +26,15 @@ describe("Rules Page Testing", () => {
       '[data-back-btn="BACK_BTN_RULES"]'
     );
 
-    await fireEvent.click(backBtn);
-    expect(screen.queryAllByAltText(/Pick a quiz from these options/i));
+    await act(async () => {
+      await fireEvent.click(backBtn);
+    });
 
-    await fireEvent.click(startBtn);
+    expect(screen.queryAllByAltText(/Pick a quiz from these options/i));
+    await act(async () => {
+      await fireEvent.click(startBtn);
+    });
+
     expect(screen.queryAllByAltText(/Time Left/i));
   });
 });

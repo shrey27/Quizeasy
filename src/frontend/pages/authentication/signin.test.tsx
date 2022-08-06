@@ -31,14 +31,14 @@ describe("Sign In Page Authentication", () => {
       await fireEvent.click(submitBtn);
     });
 
-    act(() => {
+    await act(() => {
       store.dispatch(userActions.getToken("SOME_TOKEN"));
     });
 
     let state = store.getState().users;
     expect(state.token).toBe("SOME_TOKEN");
 
-    act(() => {
+    await act(() => {
       store.dispatch(
         userActions.getUser({
           uid: "uid",

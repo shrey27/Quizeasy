@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { Question } from "./Question";
 import * as router from "react-router";
+import Quiz from ".";
 
 const navigate = jest.fn();
 
@@ -14,6 +15,13 @@ beforeEach(() => {
 
 describe("Quiz Page Testing", () => {
   it("Quiz Testing", async () => {
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Quiz />
+        </Provider>
+      </BrowserRouter>
+    );
     let { baseElement } = render(
       <BrowserRouter>
         <Provider store={store}>
@@ -54,13 +62,18 @@ describe("Quiz Page Testing", () => {
       '[data-next-question="NEXT_QUESTION"]'
     );
     expect(nextBtn).toBeDefined();
-    await fireEvent.click(nextBtn);
+    await act(async () => {
+      await fireEvent.click(nextBtn);
+    });
 
     expect(screen.queryAllByText(/In which time, the story is set ?/i));
 
     let backBtn: any = baseElement.querySelector('[data-end-quiz="END_QUIZ"]');
     expect(backBtn).toBeDefined();
-    await fireEvent.click(backBtn);
+
+    await act(async () => {
+      await fireEvent.click(backBtn);
+    });
 
     expect(
       screen.queryAllByText(/Who plays the role of Tommy Shelby on the show ?/i)
