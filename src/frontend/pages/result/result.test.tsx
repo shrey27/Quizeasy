@@ -1,11 +1,12 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { store } from "../../store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import Result from "./index";
 import * as router from "react-router";
 import { userActions } from "../../store/userSlice";
+import { act } from "react-dom/test-utils";
 
 const sampledata = {
   answers: ["three", "two", "one", "two", "one"],

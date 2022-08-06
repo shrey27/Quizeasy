@@ -1,10 +1,11 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { store } from "../../store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import Signup from "./Signup";
 import { userActions } from "../../store/userSlice";
+import { act } from "react-dom/test-utils";
 
 describe("Sign In Page Authentication", () => {
   it("SignUp Form", async () => {

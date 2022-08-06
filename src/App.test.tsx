@@ -21,7 +21,7 @@ describe("Theme Test", () => {
         </Provider>
       </BrowserRouter>
     );
-   
+
     let lightBtn: any = baseElement.querySelector('[data-light="LIGHT_THEME"]');
     await act(async () => {
       await fireEvent.click(lightBtn);
