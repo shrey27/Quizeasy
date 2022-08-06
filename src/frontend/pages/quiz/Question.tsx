@@ -77,6 +77,7 @@ export const Question: React.FC<QuestionProps> = ({
               type="button"
               onClick={handleReset}
               className="btn btn--cancel--solid btn--question md sb"
+              data-end-quiz="END_QUIZ"
             >
               End Quiz
             </button>
@@ -88,6 +89,7 @@ export const Question: React.FC<QuestionProps> = ({
                   : "btn btn--auth--solid btn--question md sb"
               }
               disabled={!attempts[Number(index)]}
+              data-next-question="NEXT_QUESTION"
             >
               Next Question
             </button>

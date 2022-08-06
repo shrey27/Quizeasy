@@ -28,19 +28,19 @@ export default function Quiz() {
     const dispatch = useAppDispatch();
     const userInfo = useAppSelector(state => state.users.userInfo);
 
-    useEffect(() => {
-        let id = setTimeout(() => {
-            if (index === 4 && time > 0) {
-                clearTimeout(id);
-            } else if (time === 1) {
-                setTime(TIME);
-                setIndex((c) => c + 1);
-            } else {
-                setTime((e) => e - 1);
-            }
-        }, 1000);
-        return () => clearTimeout(id);
-    }, [time, index]);
+    // useEffect(() => {
+    //     let id = setTimeout(() => {
+    //         if (index === 4 && time > 0) {
+    //             clearTimeout(id);
+    //         } else if (time === 1) {
+    //             setTime(TIME);
+    //             setIndex((c) => c + 1);
+    //         } else {
+    //             setTime((e) => e - 1);
+    //         }
+    //     }, 1000);
+    //     return () => clearTimeout(id);
+    // }, [time, index]);
 
     const calculateScore = () => {
         return quizObject.answers.reduce((acc, curr, index) => curr === attempts[index] ? acc + 20 : acc, 0)

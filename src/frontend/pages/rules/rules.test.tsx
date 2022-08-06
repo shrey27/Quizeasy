@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { store } from "../../store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
