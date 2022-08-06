@@ -18,7 +18,6 @@ export default function Category() {
   const userInfo = useAppSelector((state) => state.users.userInfo);
   const dispatch = useAppDispatch();
   const { quiz } = userInfo;
-
   const handleAttemptQuizUpdate = (id: String) => {
     if (quiz) {
       const quizObject = quiz.find(

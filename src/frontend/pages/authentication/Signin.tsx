@@ -126,6 +126,7 @@ export default function Signin() {
               type="submit"
               className="btn btn--wide btn--auth--solid sb"
               onClick={onSignInHandler}
+              data-auth_signin="SIGN_IN"
             >
               SIGN IN
             </button>
@@ -133,6 +134,7 @@ export default function Signin() {
               type="button"
               className="btn btn--wide btn--auth sb"
               onClick={handleGuestCredentials}
+              data-guest="GUEST_CRED_SIGNIN"
             >
               Guest Credentials
             </button>

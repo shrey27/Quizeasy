@@ -3,29 +3,28 @@ import { render, screen, fireEvent, act } from "@testing-library/react";
 import { store } from "../../store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import Signin from "./Signin";
+import Signup from "./Signup";
 
 describe("Sign In Page Authentication", () => {
-  it("SignIn Form", async () => {
-    const handleGuestCredentials = jest.fn();
+  it("SignUp Form", async () => {
     let { baseElement } = render(
       <BrowserRouter>
         <Provider store={store}>
-          <Signin />
+          <Signup />
         </Provider>
       </BrowserRouter>
     );
     let guestCredBtn: any = baseElement.querySelector(
-      '[data-guest="GUEST_CRED_SIGNIN"]'
+      '[data-guest="GUEST_CRED_SIGNUP"]'
     );
     let submitBtn: any = baseElement.querySelector(
-      '[data-auth_signin="SIGN_IN"]'
+      '[data-auth_signin="SIGN_UP"]'
     );
 
     await act(async () => {
       await fireEvent.click(guestCredBtn);
     });
-   
+
     await act(async () => {
       await fireEvent.click(submitBtn);
     });

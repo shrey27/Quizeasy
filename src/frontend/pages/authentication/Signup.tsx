@@ -179,6 +179,7 @@ export default function Signup() {
               type="submit"
               className="btn btn--wide btn--auth--solid sb"
               onClick={onSignUpHandler}
+              data-auth_signin="SIGN_UP"
             >
               SIGN UP
             </button>
@@ -186,6 +187,7 @@ export default function Signup() {
               type="button"
               className="btn btn--wide btn--auth sb"
               onClick={handleGuestCredentials}
+              data-guest="GUEST_CRED_SIGNUP"
             >
               Guest Credentials
             </button>
