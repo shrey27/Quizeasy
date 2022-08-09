@@ -38,7 +38,7 @@ export default function Signin() {
     return true;
   };
 
-  const onSignInHandler = (e: any) => {
+  const onSignInHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const { email, password } = emailDetails;
     if (validateFields()) {
@@ -55,7 +55,7 @@ export default function Signin() {
     }
   };
 
-  const handleGuestCredentials = (e: any) => {
+  const handleGuestCredentials = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setEmailDetails({
       email: "johndoe12@gmail.com",
@@ -126,13 +126,15 @@ export default function Signin() {
               type="submit"
               className="btn btn--wide btn--auth--solid sb"
               onClick={onSignInHandler}
+              data-auth_signin="SIGN_IN"
             >
-              SIGNIN
+              SIGN IN
             </button>
             <button
               type="button"
               className="btn btn--wide btn--auth sb"
               onClick={handleGuestCredentials}
+              data-guest="GUEST_CRED_SIGNIN"
             >
               Guest Credentials
             </button>

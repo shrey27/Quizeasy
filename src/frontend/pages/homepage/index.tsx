@@ -5,7 +5,7 @@ import { CATEGORY } from '../../routes';
 export default function Homepage() {
 
     return <div>
-        <h1 className="subtitle lg sb cen sm-s">CHOOSE A CATEGORY</h1>
+        <h1 className="subtitle lg sb cen sm-s" data-home-category='HOME_CATEGORY'>CHOOSE A CATEGORY</h1>
         <div className="category">
             <Link to={CATEGORY + '/movies'} className="card topic">
                 <img
