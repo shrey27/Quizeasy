@@ -140,12 +140,12 @@ export default function Leaderboard() {
                 <h1 className="text lg sb sm-s">LEADERBOARD</h1>
                 <span className="alert alert--success">
                   <i className="fa-solid fa-trophy"></i>Rank - 1{" "}
-                  {rank.first ?? "Mark Twain"}
+                  {rank.first === "undefined" ? "Mark Twain" : rank.first}
                 </span>
 
                 <span className="alert alert--primary">
                   <i className="fa-solid fa-medal"></i>Rank - 2{" "}
-                  {rank.second ?? "Jane Watson"}
+                  {rank.second === "undefined" ? "Jane Watson" : rank.second}
                 </span>
 
                 <span className="alert alert--error">
